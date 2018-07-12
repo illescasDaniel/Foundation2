@@ -1,3 +1,3 @@
-func test() -> String {
+public func test() -> String {
 	return "this"
 }
