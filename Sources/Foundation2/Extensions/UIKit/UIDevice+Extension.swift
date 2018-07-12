@@ -22,33 +22,20 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-import AVFoundation
+#if canImport(UIKit)
+import UIKit.UIDevice
 
-public extension AVAudioPlayer {
+extension UIDevice {
 	
-	public enum AudioTypes: String {
-		case mp3
-		case wav
-		// ...
-	}
-	
-	public convenience init?(file: String, type: AudioTypes, volume: Float? = nil) {
+	var modelName: String {
 		
-		guard let path = Bundle.main.path(forResource: file, ofType: type.rawValue) else { return nil }
-		let url = URL(fileURLWithPath: path)
+		var sysinfo = utsname()
+		uname(&sysinfo)
 		
-		try? self.init(contentsOf: url)
-		
-		if let validVolume = volume, validVolume >= 0.0 && validVolume <= 1.0 {
-			self.volume = validVolume
+		if let bytes = String(bytes: Data(bytes: &sysinfo.machine, count: Int(_SYS_NAMELEN)), encoding: .ascii) {
+			return bytes.trimmingCharacters(in: .controlCharacters)
 		}
-	}
-	
-	public func setVolumeLevel(to volume: Float, duration: TimeInterval? = nil) {
-		if #available(iOS 10.0, macOS 10.12, *) {
-			self.setVolume(volume, fadeDuration: duration ?? 1)
-		} else {
-			self.volume = volume
-		}
+		return "Unknown".localized
 	}
 }
+#endif

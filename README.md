@@ -1,6 +1,6 @@
 # Foundation2
 
-[![Swift version](https://img.shields.io/badge/Swift-4-orange.svg)](https://kotlinlang.org/)[![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/illescasDaniel/Foundation2/blob/master/LICENSE)[![Version](https://img.shields.io/badge/version-1.0.4-green.svg)](https://github.com/illescasDaniel/Foundation2/releases)
+[![Swift version](https://img.shields.io/badge/Swift-4-orange.svg)](https://kotlinlang.org/)[![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/illescasDaniel/Foundation2/blob/master/LICENSE)[![Version](https://img.shields.io/badge/version-1.0.5-green.svg)](https://github.com/illescasDaniel/Foundation2/releases)
 
 A great collection of extensions, protocols and classes that improves Swift and extend the Foundation module 😉.
 
@@ -14,17 +14,25 @@ A great collection of extensions, protocols and classes that improves Swift and 
 
   - **UIImage**: `contentsOf(url:)`,  `manageContentsOf(_ url:, completionHandler:, errorHandler:)` .
 
-  - **AVAudioPlayer**: `convenience init?(file:, type:, volume:)`, `setVolumeLevel(to:, duration:)` 
-
   - **Collection**: `subscript (safe index: Index)`.
 
   - **String**: 
     - Default implementation for `CustomStringConvertible.description` with reflection.
     - `subscript(index: Int) `, `var deletingPathExtension: String `, `var localized: String`.
 
+  - **AVAudioPlayer**: `convenience init?(file:, type:, volume:)`, `setVolumeLevel(to:, duration:)` 
+
+  - **AVFoundation.AVMetadataObject**: `name`, `allBarcodes`.
+
+  - **UIApplication**: `openURL(from url:, completionHandler:)`, `openSettings()`, `versionNumber`, `buildNumber`, `versionAndBuildNumber`. 
+
+  - **UIDevice**: `modelName`.
+
   - **Numeric protocols** and extensions, `Initiable`  (`init{}`) protocol, etc.
 
   - **BinaryInteger**: `isEven`, `isOdd`, `isPrime`.
+
+  - **FloatingPoint**: `π`, `τ`, `tau`.
 
   - Extensions for Swift 4.1 or lower (`shuffle()`, `shuffled`, `Array.hashValue`)
 

@@ -22,33 +22,28 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-import AVFoundation
+#if canImport(UIKit)
+import UIKit
 
-public extension AVAudioPlayer {
+extension UIApplication {
 	
-	public enum AudioTypes: String {
-		case mp3
-		case wav
-		// ...
-	}
-	
-	public convenience init?(file: String, type: AudioTypes, volume: Float? = nil) {
-		
-		guard let path = Bundle.main.path(forResource: file, ofType: type.rawValue) else { return nil }
-		let url = URL(fileURLWithPath: path)
-		
-		try? self.init(contentsOf: url)
-		
-		if let validVolume = volume, validVolume >= 0.0 && validVolume <= 1.0 {
-			self.volume = validVolume
+	/// Attempts to open the resource at the specified URL asynchronously.
+	///
+	/// - Parameter url: A URL (Universal Resource Locator).
+	/// - Returns: Inform of the success or failure of opening the URL.
+	func openURL(from url: URL?, completionHandler: @escaping (Bool) -> () = {_ in }) {
+		if let url = url {
+			UIApplication.shared.open(url, options: [:], completionHandler: completionHandler)
 		}
 	}
 	
-	public func setVolumeLevel(to volume: Float, duration: TimeInterval? = nil) {
-		if #available(iOS 10.0, macOS 10.12, *) {
-			self.setVolume(volume, fadeDuration: duration ?? 1)
-		} else {
-			self.volume = volume
-		}
+	func openSettings(completionHandler: @escaping (Bool) -> () = {_ in }) {
+		let settingsURL = URL(string: UIApplicationOpenSettingsURLString)
+		UIApplication.shared.openURL(from: settingsURL, completionHandler: completionHandler)
 	}
+	
+	static let versionNumber = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "Unknown"
+	static let buildNumber = Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? ""
+	static let versionAndBuildNumber = "\(UIApplication.versionNumber) (\(UIApplication.buildNumber))"
 }
+#endif

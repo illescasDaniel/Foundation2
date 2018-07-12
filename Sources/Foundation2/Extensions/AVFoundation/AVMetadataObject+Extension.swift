@@ -22,33 +22,14 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-import AVFoundation
+#if os(iOS)
+import AVFoundation.AVMetadataObject
 
-public extension AVAudioPlayer {
-	
-	public enum AudioTypes: String {
-		case mp3
-		case wav
-		// ...
+extension AVMetadataObject.ObjectType {
+	var name: String {
+		return self.rawValue.components(separatedBy: ".").last ?? ""
 	}
-	
-	public convenience init?(file: String, type: AudioTypes, volume: Float? = nil) {
-		
-		guard let path = Bundle.main.path(forResource: file, ofType: type.rawValue) else { return nil }
-		let url = URL(fileURLWithPath: path)
-		
-		try? self.init(contentsOf: url)
-		
-		if let validVolume = volume, validVolume >= 0.0 && validVolume <= 1.0 {
-			self.volume = validVolume
-		}
-	}
-	
-	public func setVolumeLevel(to volume: Float, duration: TimeInterval? = nil) {
-		if #available(iOS 10.0, macOS 10.12, *) {
-			self.setVolume(volume, fadeDuration: duration ?? 1)
-		} else {
-			self.volume = volume
-		}
-	}
+	static let allBarcodes: [AVMetadataObject.ObjectType] = [.upce, .code39, .code39Mod43, .ean13, .ean8,
+															 .code93, .code128, .pdf417, .qr, .aztec, .interleaved2of5, .itf14, .dataMatrix]
 }
+#endif
