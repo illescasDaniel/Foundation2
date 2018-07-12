@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "Foundation2",
+        "repositoryURL": "/Users/Daniel/Documents/Programming/Swift/Foundation2Package/Foundation2",
+        "state": {
+          "branch": null,
+          "revision": "f56bb935dd3e74525a3fa15c9a0231bced534634",
+          "version": "1.0.4"
+        }
+      }
+    ]
+  },
+  "version": 1
+}
