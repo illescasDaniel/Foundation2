@@ -4,6 +4,8 @@
 
 A great collection of extensions, protocols and classes that improves Swift and extend the Foundation module 😉.
 
+## Contents:
+
 - **Extensions**:
 
   - **UIAlertController**: `addAction(title:, style:, handler:) `.
@@ -60,3 +62,27 @@ A great collection of extensions, protocols and classes that improves Swift and 
       its.age = 10
     }
     ```
+
+## Instalation
+
+Add `Foundation2`in your `Package.swift`dependencies.
+
+Like this:
+
+```swift
+import PackageDescription
+
+let package = Package(
+    name: "Foundation2App",
+    dependencies: [
+        .package(url: "../Foundation2", from: "1.0.4"),
+    ],
+    targets: [
+        .target(
+            name: "Foundation2App",
+            dependencies: [
+                "Foundation2",
+            ]),
+    ]
+)
+```
