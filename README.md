@@ -67,21 +67,21 @@ A great collection of extensions, protocols and classes that improves Swift and 
 
 Add `Foundation2`in your `Package.swift`dependencies.
 
-Like this:
+Like this (take a look at the **Sample** folder):
 
 ```swift
 import PackageDescription
 
 let package = Package(
-    name: "Foundation2App",
+    name: "Sample",
     dependencies: [
-        .package(url: "../Foundation2", from: "1.0.4"),
+        .package(url: "https://github.com/illescasDaniel/Foundation2.git", from: "1.0.4"),
     ],
     targets: [
         .target(
-            name: "Foundation2App",
+            name: "Sample",
             dependencies: [
-                "Foundation2",
+                "Foundation2"
             ]),
     ]
 )
