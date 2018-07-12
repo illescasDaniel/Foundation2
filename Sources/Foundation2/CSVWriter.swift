@@ -43,7 +43,7 @@ public extension NumberFormatter {
 public final class CSVWriter {
 	
 	private(set) var outputCSV: String = ""
-	let numberFormatter: NumberFormatter?
+	public let numberFormatter: NumberFormatter?
 	
 	public let separator: String
 	public let columns: [String]

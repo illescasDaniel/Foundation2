@@ -25,8 +25,11 @@ SOFTWARE.
 import Foundation
 import GameplayKit.GKRandomSource
 
-/// Very useful type which handles millions of random numbers
-/// You can initialize `randomBytes` directly (as well as `internalCount`) or leave it like this so on the first call on `nextNumber` it will get an array of `maxSize` random values
+/// Very useful type which handles millions of random numbers.
+///
+/// On the first call on `nextNumber` it will initialize an interal array of `maxSize` random values.
+///
+/// - Note: keep in mind that the initial generation of the values would take a little bit, but the later access for those numbers is super fast.
 public struct TrueRandom {
 	
 	public typealias Byte = UInt32
@@ -43,7 +46,7 @@ public struct TrueRandom {
 		return (SecRandomCopyBytes(kSecRandomDefault, nElements * bytesPerElement, &randomBytes) == errSecSuccess) ? randomBytes : []
 	}
 	
-	public static var randomBytes: [Element] = [] // TrueRandom.arrayOf(nElements: maxSize)
+	private static var randomBytes: [Element] = [] // TrueRandom.arrayOf(nElements: maxSize)
 	
 	private static let maxSize = 50_000_000
 	private static var internalCount = 0 // maxSize

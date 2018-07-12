@@ -50,9 +50,9 @@ public extension Collection {
 }
 
 /* OR:
-extension MutableCollection {
+public extension MutableCollection {
 	/// Shuffles the contents of this collection.
-	mutating func shuffle() {
+	public mutating func shuffle() {
 		let c = count
 		guard c > 1 else { return }
 		
@@ -65,9 +65,9 @@ extension MutableCollection {
 	}
 }
 
-extension Sequence {
+public extension Sequence {
 	/// Returns an array with the contents of this sequence, shuffled.
-	var shuffled: [Element] {
+	public var shuffled: [Element] {
 		var result = Array(self)
 		result.shuffle()
 		return result

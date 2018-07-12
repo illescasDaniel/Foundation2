@@ -24,17 +24,17 @@ SOFTWARE.
 
 import Foundation
 
-extension BinaryInteger {
+public extension BinaryInteger {
 	
-	var isEven: Bool {
+	public var isEven: Bool {
 		return self % 2 == 0
 	}
 	
-	var isOdd: Bool {
+	public var isOdd: Bool {
 		return !self.isEven
 	}
 	
-	var isPrime: Bool {
+	public var isPrime: Bool {
 		
 		if self <= 1 || self % 2 == 0 || self % 3 == 0 { return false }
 		if self <= 3 { return true }

@@ -44,30 +44,24 @@ import Foundation
 /// ```
 public final class PreferencesManager {
 	
+	#if swift(>=4.2)
+	#warning("TODO: complete properties (remove this after you do)")
+	#endif
 	public enum Properties: String {
 		
-		case backgroundMusicSwitch
-		case hapticFeedbackSwitch
-		case parallaxEffectSwitch
-		case darkThemeSwitch
+		case name
 		case score
-		case correctAnswers
-		case incorrectAnswers
-		case savedQuestionsCounter
 		
 		public var defaultvalue: Any {
 			switch self {
-			case .backgroundMusicSwitch: return true
-			case .hapticFeedbackSwitch: return true
-			case .parallaxEffectSwitch: return true
-			case .darkThemeSwitch: return false
+			case .name: return ""
 			case .score: return 0
-			case .correctAnswers: return 0
-			case .incorrectAnswers: return 0
-			case .savedQuestionsCounter: return 0
 			}
 		}
 		
+		#if swift(>=4.2)
+		#warning("TODO: add properties for custom classes (remove this after you do)")
+		#endif
 		/// Custom classes must conform to `Codable` protocol
 		public enum Custom: String {
 			case user
@@ -131,9 +125,9 @@ public final class PreferencesManager {
 	}
 }
 
-extension UserDefaults {
+public extension UserDefaults {
 	
-	func value<T>(fromKey propertyKey: String) -> T? {
+	public func value<T>(fromKey propertyKey: String) -> T? {
 		guard self.object(forKey: propertyKey) != nil else { return nil }
 		switch T.self {
 		case is Int.Type: return self.integer(forKey: propertyKey) as? T
@@ -150,14 +144,14 @@ extension UserDefaults {
 		}
 	}
 	
-	func decodableValue<T: Decodable>(fromKey propertyKey: String) -> T? {
+	public func decodableValue<T: Decodable>(fromKey propertyKey: String) -> T? {
 		guard self.object(forKey: propertyKey) != nil else { return nil }
 		return self.string(forKey: propertyKey)?.decoded()
 	}
 }
 
-extension Encodable {
-	var inJSON: String {
+public extension Encodable {
+	public var inJSON: String {
 		if let data = try? JSONEncoder().encode(self), let jsonQuiz = String(data: data, encoding: .utf8) {
 			return jsonQuiz
 		}
@@ -165,8 +159,8 @@ extension Encodable {
 	}
 }
 
-extension String {
-	func decoded<T: Decodable>() -> T? {
+public extension String {
+	public func decoded<T: Decodable>() -> T? {
 		if let data = self.data(using: .utf8), let decodedValue = try? JSONDecoder().decode(T.self, from: data) {
 			return decodedValue
 		}
