@@ -4,7 +4,7 @@
 
 A great collection of extensions, protocols and classes that improves Swift and extend the Foundation module 😉.
 
-## Contents:
+## Contents
 
 - **Extensions**:
 
