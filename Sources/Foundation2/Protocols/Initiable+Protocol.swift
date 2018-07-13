@@ -24,32 +24,6 @@ SOFTWARE.
 
 import Foundation
 
-public protocol NumericArithmetic: ExpressibleByIntegerLiteral {
-	static func +(lhs: Self, rhs: Self) -> Self
-	static func -(lhs: Self, rhs: Self) -> Self
-	static func *(lhs: Self, rhs: Self) -> Self
-	static func /(lhs: Self, rhs: Self) -> Self
-	
-	static func +=(lhs: inout Self, rhs: Self)
-	static func -=(lhs: inout Self, rhs: Self)
-	static func *=(lhs: inout Self, rhs: Self)
-	static func /=(lhs: inout Self, rhs: Self)
-}
-
-public protocol ModulusArithmetic {
-	static func %(lhs: Self, rhs: Self) -> Self
-	static func %=(lhs: inout Self, rhs: Self)
-}
-
-public protocol SignedNumericArithmetic: NumericArithmetic {
-	prefix static func -(value: Self) -> Self
-}
-
-public protocol BinaryIntegerArithmetic: NumericArithmetic, ModulusArithmetic, BinaryInteger { }
-public protocol BinarySignedIntegerArithmetic: SignedNumericArithmetic, BinaryIntegerArithmetic { }
-public protocol BinaryFloatingPointArithmetic: SignedNumericArithmetic, BinaryFloatingPoint { }
-public protocol FloatingPointArithmetic: SignedNumericArithmetic, FloatingPoint {}
-
 public protocol Initiable { init() }
 
 extension Decimal: Initiable {}
