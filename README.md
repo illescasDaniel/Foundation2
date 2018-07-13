@@ -43,7 +43,7 @@ A great collection of extensions, protocols and classes that improves Swift and 
 
   - **CIContext**: easy properties to use a metal context or a OpenGL context. 
 
-  - **Extensions for Swift 4.1 or lower** (`shuffle()`, `shuffled`, `Array.hashValue`, `CaseIterableEnum`, `Collection.randomElement` .
+  - **Extensions for Swift 4.1 or lower**: `shuffle()`, `shuffled`, `Array.hashValue`, `CaseIterableEnum`, `Collection.randomElement` .
 
     
 
@@ -75,7 +75,12 @@ A great collection of extensions, protocols and classes that improves Swift and 
 
   - **Power operator**: `**` (5 ** 2 = 25)
 
-  - **StringSimilarity** operator: "Daniel Illescas" =~ "Daniel ilescas" // will return `true`if the two strings are 85% similar or above.
+  - **StringSimilarity operator**: `=~`
+
+    ```swift
+    // Will return true if the two strings are 85% similar or above.
+    print("Daniel Illescas" =~ "Daniel ilescas")
+    ```
 
   - **Apply operator**: `=>` 
 
