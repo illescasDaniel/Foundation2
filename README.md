@@ -1,6 +1,6 @@
 # Foundation2
 
-[![Swift version](https://img.shields.io/badge/Swift-4-orange.svg)](https://kotlinlang.org/)[![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/illescasDaniel/Foundation2/blob/master/LICENSE)[![Version](https://img.shields.io/badge/version-1.0.5-green.svg)](https://github.com/illescasDaniel/Foundation2/releases)
+[![Swift version](https://img.shields.io/badge/Swift-4-orange.svg)](https://kotlinlang.org/)[![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/illescasDaniel/Foundation2/blob/master/LICENSE)[![Version](https://img.shields.io/badge/version-1.1.0-green.svg)](https://github.com/illescasDaniel/Foundation2/releases)
 
 A great collection of extensions, protocols and classes that improves Swift and extend the Foundation module 😉.
 
@@ -90,7 +90,7 @@ import PackageDescription
 let package = Package(
     name: "Sample",
     dependencies: [
-        .package(url: "https://github.com/illescasDaniel/Foundation2.git", from: "1.1"),
+        .package(url: "https://github.com/illescasDaniel/Foundation2.git", from: "1.1.0"),
     ],
     targets: [
         .target(
