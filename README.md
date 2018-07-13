@@ -51,6 +51,8 @@ A great collection of extensions, protocols and classes that improves Swift and 
 
   * [**ToastAlert**](https://github.com/illescasDaniel/ToastAlert): a basic toast-like alert, similar to what to find in Android. 
 
+  * **Reachability**: easily know if the device is connnected to a network or not. 
+
   * [**CSVWriter**](https://github.com/illescasDaniel/CSVWriter): a CSV writer made in Swift. 
 
   * **IAP**: a class to inherit from which lets you easily control your purchases. 
