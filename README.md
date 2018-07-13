@@ -51,7 +51,7 @@ A great collection of extensions, protocols and classes that improves Swift and 
 
 - **Protocols**:
 
-  - **Arithmetic protocols**: NumericArithmetic, BinaryIntegerArithmetic, BinarySignedIntegerArithmetic, BinaryFloatingPointArithmetic, FloatingPointArithmetic. The allow you to perform operations with 'generic' types. 
+  - **Arithmetic protocols**: that allows yoo to perform arithmetic operations with generic types conforming to these. `NumericArithmetic`, `BinaryIntegerArithmetic`, `BinarySignedIntegerArithmetic`, `BinaryFloatingPointArithmetic`, `FloatingPointArithmetic`. 
   -  **Initiable**: `protocol Initiable { init() }`. Making a type conform to this protocol allows it to create an instance in generic functions where <`T`: `Initiable`>.
 
   
