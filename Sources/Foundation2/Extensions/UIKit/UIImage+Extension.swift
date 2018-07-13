@@ -83,6 +83,34 @@ public extension UIImage {
 		return newImage
 	}
 	
+	public func resizedWith(width: CGFloat) -> UIImage? {
+		
+		let scale = width / self.size.width
+		let newHeight = self.size.height * scale
+		
+		UIGraphicsBeginImageContext(CGSize(width: width, height: newHeight))
+		self.draw(in: CGRect(x: 0, y: 0, width: width, height: newHeight))
+		
+		let newImage = UIGraphicsGetImageFromCurrentImageContext()
+		UIGraphicsEndImageContext()
+		
+		return newImage
+	}
+	
+	public func resizedWith(height: CGFloat) -> UIImage? {
+		
+		let scale = height / self.size.height
+		let newWidth = self.size.width * scale
+		
+		UIGraphicsBeginImageContext(CGSize(width: newWidth, height: height))
+		self.draw(in: CGRect(x: 0, y: 0, width: newWidth, height: height))
+		
+		let newImage = UIGraphicsGetImageFromCurrentImageContext()
+		UIGraphicsEndImageContext()
+		
+		return newImage
+	}
+	
 	/// Returns the average color of the whole image, or nil if an error ocurred (the alpha channel is 1.0).
 	public var averageColor: UIColor? {
 		return self.averageColor(alphaAverage: false)
