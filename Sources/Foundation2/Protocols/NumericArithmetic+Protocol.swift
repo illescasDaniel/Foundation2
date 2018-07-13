@@ -49,3 +49,19 @@ public protocol BinaryIntegerArithmetic: NumericArithmetic, ModulusArithmetic, B
 public protocol BinarySignedIntegerArithmetic: SignedNumericArithmetic, BinaryIntegerArithmetic { }
 public protocol BinaryFloatingPointArithmetic: SignedNumericArithmetic, BinaryFloatingPoint { }
 public protocol FloatingPointArithmetic: SignedNumericArithmetic, FloatingPoint {}
+
+extension Int8   : BinarySignedIntegerArithmetic { }
+extension Int16  : BinarySignedIntegerArithmetic { }
+extension Int32  : BinarySignedIntegerArithmetic { }
+extension Int64  : BinarySignedIntegerArithmetic { }
+extension Int    : BinarySignedIntegerArithmetic { }
+extension UInt8  : BinaryIntegerArithmetic { }
+extension UInt16 : BinaryIntegerArithmetic { }
+extension UInt32 : BinaryIntegerArithmetic { }
+extension UInt64 : BinaryIntegerArithmetic { }
+extension UInt   : BinaryIntegerArithmetic { }
+extension Float32 : BinaryFloatingPointArithmetic, FloatingPointArithmetic { }
+extension Float64 : BinaryFloatingPointArithmetic, FloatingPointArithmetic { }
+#if arch(x86_64) || arch(i386)
+extension Float80 : BinaryFloatingPointArithmetic, FloatingPointArithmetic { }
+#endif

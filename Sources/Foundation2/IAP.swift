@@ -27,36 +27,33 @@ SOFTWARE.
 #else
 import StoreKit
 
+#if swift(>=4.2)
+extension IAP.ItemID: CaseIterable { }
+#else
+extension IAP.ItemID: CaseIterableEnum { }
+#endif
 /// A class to inherit from which lets you easily control your purchases.
 /// - Note: Instead of `IAP` being a UITableViewController you can change this class so it inherits from a UIViewController.
 ///
 /// # Setup
 /// * Inherit from this class
 /// * Call `super.viewDidLoad()` inside your `viewDidLoad()`
+/// * Modify the items inside `ItemID` enum by adding/changing their 'IDs'.
+/// * Localize the following strings:
+/// 	* IAP_PAYMENT_SUCCESS_TITLE, IAP_PAYMENT_SUCCESS_MESSAGE, IAP_PAYMENT_SUCCESS_OK_DISMISS_BUTTON_TITLE
+///		* IAP_PAYMENT_ERROR_TITLE, IAP_PAYMENT_ERROR_MESSAGE, IAP_PAYMENT_SUCCESS_ERROR_BUTTON_TITLE
+///		* IAP_PURCHASES_DISABLED_ON_DEVICE, IAP_PURCHASES_DISABLED_ERROR_BUTTON_TITLE
 ///
 /// # Usage
 /// Call `purchase(item: ItemID)`, with the proper ItemID.
 open class IAP: UITableViewController, SKProductsRequestDelegate, SKPaymentTransactionObserver {
 	
-	#if swift(>=4.2)
-	enum ItemID: String, CaseIterable {
+	public enum ItemID: String {
 		case item1 = "com.yourusername.YourAppName.itemToPurchaseName1"
 		case item2 = "com.yourusername.YourAppName.itemToPurchaseName2"
 		case item3 = "com.yourusername.YourAppName.itemToPurchaseName3"
 		case item4 = "com.yourusername.YourAppName.itemToPurchaseName4"
-		static var all: Set<String> {
-			return Set(self.allCases.map { $0.rawValue })
-		}
 	}
-	#else
-	enum ItemID: String {
-		case item1 = "com.yourusername.YourAppName.itemToPurchaseName1"
-		case item2 = "com.yourusername.YourAppName.itemToPurchaseName2"
-		case item3 = "com.yourusername.YourAppName.itemToPurchaseName3"
-		case item4 = "com.yourusername.YourAppName.itemToPurchaseName4"
-		static let all: Set<String> = [ItemID.item1.rawValue, ItemID.item2.rawValue, ItemID.item3.rawValue, ItemID.item4.rawValue]
-	}
-	#endif
 	
 	private var iapProducts: [SKProduct] = []
 	

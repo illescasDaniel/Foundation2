@@ -1,6 +1,6 @@
 # Foundation2
 
-[![Swift version](https://img.shields.io/badge/Swift-4-orange.svg)](https://kotlinlang.org/)[![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/illescasDaniel/Foundation2/blob/master/LICENSE)[![Version](https://img.shields.io/badge/version-1.2.1-green.svg)](https://github.com/illescasDaniel/Foundation2/releases)
+[![Swift version](https://img.shields.io/badge/Swift-4-orange.svg)](https://kotlinlang.org/)[![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/illescasDaniel/Foundation2/blob/master/LICENSE)[![Version](https://img.shields.io/badge/version-1.2.2-green.svg)](https://github.com/illescasDaniel/Foundation2/releases)
 
 A great collection of extensions, protocols and classes that improves Swift and extend the Foundation module 😉.
 
@@ -41,11 +41,20 @@ A great collection of extensions, protocols and classes that improves Swift and 
 
   - **RawRepresentable**: `rawLocalized`.
 
+  - **CaseIterable (Swift 4.2 or >)**: `all` (allCases mapped to its RawValue).
+
   - **CIContext**: easy properties to use a metal context or a OpenGL context. 
 
   - **Extensions for Swift 4.1 or lower**: `shuffle()`, `shuffled`, `Array.hashValue`, `CaseIterableEnum`, `Collection.randomElement` .
 
     
+
+- **Protocols**:
+
+  - **Arithmetic protocols**: NumericArithmetic, BinaryIntegerArithmetic, BinarySignedIntegerArithmetic, BinaryFloatingPointArithmetic, FloatingPointArithmetic. The allow you to perform operations with 'generic' types. 
+  -  **Initiable**: `protocol Initiable { init() }`. Making a type conform to this protocol allows it to create an instance in generic functions where <`T`: `Initiable`>.
+
+  
 
 - **Classes**:
 
@@ -103,7 +112,7 @@ import PackageDescription
 let package = Package(
     name: "Sample",
     dependencies: [
-        .package(url: "https://github.com/illescasDaniel/Foundation2.git", from: "1.2.1"),
+        .package(url: "https://github.com/illescasDaniel/Foundation2.git", from: "1.2.2"),
     ],
     targets: [
         .target(

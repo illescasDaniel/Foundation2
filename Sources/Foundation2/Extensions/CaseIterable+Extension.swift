@@ -22,26 +22,12 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
+#if swift(>=4.2)
 import Foundation
 
-public protocol Initiable { init() }
-
-extension Decimal: Initiable {}
-extension Int8   : Initiable { }
-extension Int16  : Initiable { }
-extension Int32  : Initiable { }
-extension Int64  : Initiable { }
-extension Int    : Initiable { }
-extension UInt8  : Initiable { }
-extension UInt16 : Initiable { }
-extension UInt32 : Initiable { }
-extension UInt64 : Initiable { }
-extension UInt   : Initiable { }
-extension Float32 : Initiable { }
-extension Float64 : Initiable { }
-#if arch(x86_64) || arch(i386)
-extension Float80 : Initiable { }
+extension CaseIterable where Self.AllCases.Element: RawRepresentable, Self.RawValue: Hashable {
+	static var all: Set<RawValue> {
+		return Set<RawValue>(self.allCases.map({ $0.rawValue }))
+	}
+}
 #endif
-extension String: Initiable {}
-extension NSObject: Initiable {}
-// extension UIView: Initiable {} (already conforms because it inherits (at least for now) from NSObject)

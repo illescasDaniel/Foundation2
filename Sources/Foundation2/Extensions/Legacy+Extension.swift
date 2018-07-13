@@ -37,7 +37,6 @@ public protocol CaseIterableEnum: Hashable {
 }
 
 public extension CaseIterableEnum {
-	
 	/// Returns: all Enum Values
 	public static var allCases: [Self] {
 		typealias Type = Self
@@ -52,6 +51,11 @@ public extension CaseIterableEnum {
 		}
 		
 		return Array(cases)
+	}
+}
+extension CaseIterableEnum where Self: RawRepresentable, Self.RawValue: Hashable {
+	static var all: Set<RawValue> {
+		return Set<RawValue>(self.allCases.map({ $0.rawValue }))
 	}
 }
 
