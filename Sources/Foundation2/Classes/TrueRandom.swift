@@ -36,7 +36,7 @@ import GameplayKit.GKRandomSource
 /// - Note: keep in mind that the initial generation of the values would take a little bit, but the later access for those numbers is super fast.
 public struct TrueRandom {
 	
-	public typealias Byte = UInt32
+	public typealias Byte = UInt8
 	public typealias Element = UInt8 // UInt32, etc
 	
 	public static func arrayOf(nBytes numberOfBytes: Int) -> [Byte] {
