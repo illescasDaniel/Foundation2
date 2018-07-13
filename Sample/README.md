@@ -2,7 +2,7 @@
 
 ## Intructions:
 
-* Delete `.build` folder.
+* Delete `.build` and `Package.resolved` file if they exists.
 * Run this in this folder: `swift package update`
 * Run this: `swift package generate-xcodeproj`
 * Finally this one: `swift build`
