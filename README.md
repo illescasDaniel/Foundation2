@@ -12,7 +12,7 @@ A great collection of extensions, protocols and classes that improves Swift and 
 
   - **UIColor**: extensions for DisplayP3, RBG, Hex values, return RGB components...
 
-  - **UIImage**: `contentsOf(url:)`,  `manageContentsOf(_ url:, completionHandler:, errorHandler:)` , `isLandscape`, `isPortrait`, `resizedImage(to targetSize:)`, `averageColor`.
+  - **UIImage**: `contentsOf(url:)`,  `manageContentsOf(_ url:, completionHandler:, errorHandler:)`, `isLandscape`, `isPortrait`, `resizedImage(to targetSize:)`, `averageColor`.
 
   - **UIColor**: `lighter(by percentage:)`, `darker(by percentage:)`, `isLight`, `isDark`, `inGrayScale`.
 
@@ -20,10 +20,10 @@ A great collection of extensions, protocols and classes that improves Swift and 
 
   - **String**: 
     - Default implementation for `CustomStringConvertible.description` with reflection.
-    - `subscript(index: Int) `, `var deletingPathExtension: String `, `var localized: String`.
+    - `subscript(index: Int)`, `var deletingPathExtension: String `, `var localized: String`.
     - `clear()`, `isNumeric`, `levenshteinDistanceScoreTo(string:, ...)`
 
-  - **UIView**: `mapEverySubview(block:)` 
+  - **UIView**: `mapEverySubview(block:)`
 
   - **AVAudioPlayer**: `convenience init?(file:, type:, volume:)`, `setVolumeLevel(to:, duration:)` 
 
@@ -93,7 +93,7 @@ A great collection of extensions, protocols and classes that improves Swift and 
 
 ## Instalation
 
-Add `Foundation2`in your `Package.swift`dependencies.
+Add `Foundation2` in your `Package.swift` dependencies.
 
 Like this (take a look at the **Sample** folder):
 
