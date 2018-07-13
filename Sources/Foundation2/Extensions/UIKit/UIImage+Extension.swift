@@ -22,11 +22,13 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 #if canImport(UIKit)
-
+#if os(watchOS)
+#else
 import UIKit.UIImage
 
 public extension UIImage {
 	
+	/// Initializes an UIImage from a URL containing an image
 	public convenience init?(contentsOf url: URL?) {
 		
 		guard let validURL = url else { return nil }
@@ -38,6 +40,7 @@ public extension UIImage {
 		return nil
 	}
 	
+	/// Manages the content of a remote image
 	public static func manageContentsOf(_ url: URL?, completionHandler: @escaping ((UIImage, URL?) -> ()), errorHandler: (() -> ())? = nil) {
 		DispatchQueue.global().async {
 			if let validImage = UIImage(contentsOf: url) {
@@ -51,5 +54,82 @@ public extension UIImage {
 			}
 		}
 	}
+	
+	public var isLandscape: Bool {
+		return self.size.width > self.size.height
+	}
+	
+	public var isPortrait: Bool {
+		return !self.isLandscape
+	}
+	
+	@available(iOS 10.0, *)
+	public func resizedImage(to targetSize: CGSize) -> UIImage {
+		
+		let rect = CGRect(x: 0, y: 0, width: targetSize.width, height: targetSize.height)
+		
+		let renderFormat: UIGraphicsImageRendererFormat
+		if #available(iOS 11.0, tvOS 11.0, *) {
+			renderFormat = UIGraphicsImageRendererFormat.preferred()
+		} else {
+			renderFormat = UIGraphicsImageRendererFormat.default()
+		}
+		//renderFormat.opaque = true
+		let renderer = UIGraphicsImageRenderer(size: targetSize, format: renderFormat)
+		let newImage = renderer.image { context in
+			self.draw(in: rect)
+		}
+		
+		return newImage
+	}
+	
+	/// Returns the average color of the whole image, or nil if an error ocurred (the alpha channel is 1.0).
+	public var averageColor: UIColor? {
+		return self.averageColor(alphaAverage: false)
+	}
+	
+	/// Returns the average color of the whole image, or nil if an error ocurred
+	/// - Parameters:
+	/// 	- alphaAverage: Indicated whether it uses the average alpha of the image or nor (Not recommended in most cases).
+	public func averageColor(alphaAverage: Bool) -> UIColor? {
+		
+		var bitmap = [UInt8](repeating: 0, count: 4)
+		
+		#if os(iOS)
+		let context = CIContext.best
+		#else
+		let context = CIContext()
+		#endif
+		
+		var validInputImage = CIImage()
+		
+		if let validCIImage = self.ciImage {
+			validInputImage = validCIImage
+		}
+		else if let cgImage = self.cgImage {
+			validInputImage = CIImage(cgImage: cgImage)
+		}
+		else { return nil }
+		
+		let extent = validInputImage.extent
+		let inputExtent = CIVector(x: extent.origin.x, y: extent.origin.y, z: extent.size.width, w: extent.size.height)
+		
+		if let filter = CIFilter(name: "CIAreaAverage", withInputParameters: [kCIInputImageKey: validInputImage, kCIInputExtentKey: inputExtent]), let outputImage = filter.outputImage {
+			
+			let outputExtent = outputImage.extent
+			if outputExtent.size.width == 1 && outputExtent.size.height == 1 {
+				context.render(outputImage,
+							   toBitmap: &bitmap, rowBytes: 4,
+							   bounds: CGRect(x: 0, y: 0, width: 1, height: 1),
+							   format: kCIFormatRGBA8, colorSpace: CGColorSpaceCreateDeviceRGB())
+				
+				return alphaAverage
+						? UIColor(red: CGFloat(bitmap[0]) / 255.0, green: CGFloat(bitmap[1]) / 255.0, blue: CGFloat(bitmap[2]) / 255.0, alpha: CGFloat(bitmap[3]) / 255.0)
+						: UIColor(red: CGFloat(bitmap[0]) / 255.0, green: CGFloat(bitmap[1]) / 255.0, blue: CGFloat(bitmap[2]) / 255.0, alpha: 1.0)
+			}
+		}
+		return nil
+	}
 }
+#endif
 #endif

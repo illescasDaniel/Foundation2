@@ -23,6 +23,8 @@ SOFTWARE.
 */
 
 #if canImport(UIKit)
+#if os(watchOS)
+#else
 import UIKit
 
 /// An easy class to manage online images in Swift.
@@ -198,4 +200,5 @@ public final class CachedImages {
 		}
 	}
 }
+#endif
 #endif

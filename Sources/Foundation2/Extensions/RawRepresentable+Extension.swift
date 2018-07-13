@@ -22,30 +22,11 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-#if canImport(UIKit)
-#if os(watchOS)
-#else
-import UIKit.UIDevice
+import Foundation
 
-public extension UIDevice {
-	
-	public var modelName: String {
-		
-		var sysinfo = utsname()
-		uname(&sysinfo)
-		
-		if let bytes = String(bytes: Data(bytes: &sysinfo.machine, count: Int(_SYS_NAMELEN)), encoding: .ascii) {
-			return bytes.trimmingCharacters(in: .controlCharacters)
-		}
-		return "Unknown".localized
-	}
-	
-	public var hasNotchOrExtraInsets: Bool {
-		if #available(iOS 11.0, *) {
-			return UIApplication.shared.windows.first?.safeAreaInsets != .zero
-		}
-		return false
+extension RawRepresentable where RawValue == String {
+	/// The corresponding localized value of the raw type.
+	var rawLocalized: String {
+		return self.rawValue.localized
 	}
 }
-#endif
-#endif

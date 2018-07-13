@@ -43,6 +43,8 @@ public extension String {
 	}
 	
 	/// Retuns a localized string with an empty comment.
+	///
+	/// You also have `RawRepresentable.rawLocalized` to accesss the localized versions of the raw strings values
 	public var localized: String {
 		return NSLocalizedString(self, comment: "")
 	}

@@ -31,6 +31,8 @@ public extension DispatchTime {
 	}
 }
 
+#if os(iOS)
+@available(iOS 10.0, *)
 public typealias FeedbackGenerator = HapticFeedback.FeedbackGenerator
 
 /// Create simple haptic feedback patters easily.
@@ -59,6 +61,7 @@ public typealias FeedbackGenerator = HapticFeedback.FeedbackGenerator
 	.play()
 	```
 */
+@available(iOS 10.0, *)
 public final class HapticFeedback {
 	
 	fileprivate enum HapticEffect {
@@ -210,4 +213,5 @@ public final class HapticFeedback {
 	}
 }
 
+#endif
 #endif

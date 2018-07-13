@@ -66,6 +66,53 @@ public extension UIColor {
 		var r: CGFloat = 0, g: CGFloat = 0, b: CGFloat = 0, a: CGFloat = 0
 		return getRed(&r, green: &g, blue: &b, alpha: &a) ? (r * 255.0, g * 255.0, b * 255.0, a * 255.0) : nil
 	}
+	
+	/// Returns a lighter version of the current color by a percentage value.
+	/// - Parameters:
+	///		- percentage: A value between 0 and 100.
+	public func lighter(by percentage: CGFloat = 30.0) -> UIColor {
+		return self.adjust(by: abs(percentage) )
+	}
+	
+	/// Returns a darker version of the current color by a percentage value.
+	/// - Parameters:
+	///		- percentage: A value between 0 and 100.
+	public func darker(by percentage: CGFloat = 30.0) -> UIColor {
+		return self.adjust(by: -1 * abs(percentage) )
+	}
+	
+	/// Adjusts a color by making it lighter (positive value) or darker (negative)
+	internal func adjust(by percentage: CGFloat = 30.0) -> UIColor {
+		
+		var r: CGFloat = 0, g: CGFloat = 0, b: CGFloat = 0, a: CGFloat = 0
+		
+		if self.getRed(&r, green: &g, blue: &b, alpha: &a) {
+			return UIColor(red: min(r + percentage/100, 1.0),
+						   green: min(g + percentage/100, 1.0),
+						   blue: min(b + percentage/100, 1.0),
+						   alpha: a)
+		}
+		return self
+	}
+	
+	public var isLight: Bool {
+		var white: CGFloat = 0
+		self.getWhite(&white, alpha: nil)
+		return white > 0.65
+	}
+	
+	public var isDark: Bool { return !self.isLight }
+	
+	public var inGrayScale: UIColor? {
+		
+		var grayscale: CGFloat = 0
+		var alpha: CGFloat = 0
+		
+		if self.getWhite(&grayscale, alpha: &alpha) {
+			return UIColor(white: grayscale, alpha: alpha)
+		}
+		return nil
+	}
 }
 
 #endif

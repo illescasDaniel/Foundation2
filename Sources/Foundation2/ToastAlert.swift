@@ -23,6 +23,8 @@ SOFTWARE.
 */
 
 #if canImport(UIKit)
+#if os(watchOS)
+#else
 import UIKit
 
 /// A basic toast-like alert, similar to what to find in Android.
@@ -76,9 +78,11 @@ public struct ToastAlert {
 		DispatchQueue.global().async {
 			let operationSuccess = operation()
 			DispatchQueue.main.async {
+				#if os(iOS)
 				if #available(iOS 10.0, *), playHapticFeedback {
 					UINotificationFeedbackGenerator().notificationOccurred(operationSuccess ? .success : .error)
 				}
+				#endif
 				ToastAlert.makeWith(message: operationSuccess ? onSuccessMessage : onErrorMessage, length: length).present(in: viewController, onCompletion: onCompletion)
 			}
 		}
@@ -114,4 +118,5 @@ public struct ToastAlert {
 		return true
 	}
 }
+#endif
 #endif

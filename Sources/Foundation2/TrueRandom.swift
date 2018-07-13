@@ -23,7 +23,11 @@ SOFTWARE.
 */
 
 import Foundation
+
+#if os(watchOS)
+#else
 import GameplayKit.GKRandomSource
+#endif
 
 /// Very useful type which handles millions of random numbers.
 ///
@@ -57,10 +61,13 @@ public struct TrueRandom {
 		return data as Data
 	}
 	
-	@available(macOS 10.11, *)
+	#if os(watchOS)
+	#else
+	@available(iOS 9.0, macOS 10.11, *)
 	public static func nextInt(upperBound: Int, seed: Data) -> Int {
 		return GKARC4RandomSource(seed: seed).nextInt(upperBound: upperBound)
 	}
+	#endif
 	
 	public static var nextNumber: Element {
 		internalCount -= 1

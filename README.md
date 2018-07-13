@@ -1,6 +1,6 @@
 # Foundation2
 
-[![Swift version](https://img.shields.io/badge/Swift-4-orange.svg)](https://kotlinlang.org/)[![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/illescasDaniel/Foundation2/blob/master/LICENSE)[![Version](https://img.shields.io/badge/version-1.1.0-green.svg)](https://github.com/illescasDaniel/Foundation2/releases)
+[![Swift version](https://img.shields.io/badge/Swift-4-orange.svg)](https://kotlinlang.org/)[![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/illescasDaniel/Foundation2/blob/master/LICENSE)[![Version](https://img.shields.io/badge/version-1.2.0-green.svg)](https://github.com/illescasDaniel/Foundation2/releases)
 
 A great collection of extensions, protocols and classes that improves Swift and extend the Foundation module 😉.
 
@@ -10,9 +10,11 @@ A great collection of extensions, protocols and classes that improves Swift and 
 
   - **UIAlertController**: `addAction(title:, style:, handler:) `.
 
-  - **UIColor**: extensions for DisplayP3, RBG, Hex values, return rub components...
+  - **UIColor**: extensions for DisplayP3, RBG, Hex values, return RGB components...
 
-  - **UIImage**: `contentsOf(url:)`,  `manageContentsOf(_ url:, completionHandler:, errorHandler:)` .
+  - **UIImage**: `contentsOf(url:)`,  `manageContentsOf(_ url:, completionHandler:, errorHandler:)` , `isLandscape`, `isPortrait`, `resizedImage(to targetSize:)`, `averageColor`.
+
+  - **UIColor**: `lighter(by percentage:)`, `darker(by percentage:)`, `isLight`, `isDark`, `inGrayScale`.
 
   - **Collection**: `subscript (safe index: Index)`.
 
@@ -21,13 +23,15 @@ A great collection of extensions, protocols and classes that improves Swift and 
     - `subscript(index: Int) `, `var deletingPathExtension: String `, `var localized: String`.
     - `clear()`, `isNumeric`, `levenshteinDistanceScoreTo(string:, ...)`
 
+  - **UIView**: `mapEverySubview(block:)` 
+
   - **AVAudioPlayer**: `convenience init?(file:, type:, volume:)`, `setVolumeLevel(to:, duration:)` 
 
   - **AVFoundation.AVMetadataObject**: `name`, `allBarcodes`, `twoDBarcodes`, `is1DBarcode`. 
 
   - **UIApplication**: `openURL(from url:, completionHandler:)`, `openSettings()`, `versionNumber`, `buildNumber`, `versionAndBuildNumber`. 
 
-  - **UIDevice**: `modelName`.
+  - **UIDevice**: `modelName`, `hasNotchOrExtraInsets`.
 
   - **Numeric protocols** and extensions, `Initiable`  (`init{}`) protocol, etc.
 
@@ -35,7 +39,11 @@ A great collection of extensions, protocols and classes that improves Swift and 
 
   - **FloatingPoint**: `π`, `τ`, `tau`.
 
-  - Extensions for Swift 4.1 or lower (`shuffle()`, `shuffled`, `Array.hashValue`)
+  - **RawRepresentable**: `rawLocalized`.
+
+  - **CIContext**: easy properties to use a metal context or a OpenGL context. 
+
+  - **Extensions for Swift 4.1 or lower** (`shuffle()`, `shuffled`, `Array.hashValue`, `CaseIterableEnum`, `Collection.randomElement` .
 
     
 

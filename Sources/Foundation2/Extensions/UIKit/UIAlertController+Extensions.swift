@@ -23,7 +23,8 @@ SOFTWARE.
 */
 
 #if canImport(UIKit)
-
+#if os(watchOS)
+#else
 import UIKit.UIAlertController
 
 public extension UIAlertController {
@@ -41,9 +42,11 @@ public extension UIAlertController {
 	- Returns: A new alert action object.
 	- SDKs:	iOS 8.0+, tvOS 9.0+
 	*/
-	public func addAction(title: String, style: UIAlertActionStyle, handler: ((UIAlertAction) -> Void)? = nil) {
+	@discardableResult public func addAction(title: String, style: UIAlertActionStyle, handler: ((UIAlertAction) -> Void)? = nil) -> UIAlertController {
 		let alertAction = UIAlertAction(title: title, style: style, handler: handler)
 		self.addAction(alertAction)
+		return self
 	}
 }
+#endif
 #endif

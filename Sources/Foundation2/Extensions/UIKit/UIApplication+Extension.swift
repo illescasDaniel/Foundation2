@@ -23,6 +23,8 @@ SOFTWARE.
 */
 
 #if canImport(UIKit)
+#if os(watchOS)
+#else
 import UIKit
 
 public extension UIApplication {
@@ -33,7 +35,11 @@ public extension UIApplication {
 	/// - Returns: Inform of the success or failure of opening the URL.
 	public func openURL(from url: URL?, completionHandler: @escaping (Bool) -> () = {_ in }) {
 		if let url = url {
-			UIApplication.shared.open(url, options: [:], completionHandler: completionHandler)
+			if #available(iOS 10.0, *) {
+				UIApplication.shared.open(url, options: [:], completionHandler: completionHandler)
+			} else {
+				UIApplication.shared.openURL(url)
+			}
 		}
 	}
 	
@@ -46,4 +52,5 @@ public extension UIApplication {
 	public static let buildNumber = Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? ""
 	public static let versionAndBuildNumber = "\(UIApplication.versionNumber) (\(UIApplication.buildNumber))"
 }
+#endif
 #endif

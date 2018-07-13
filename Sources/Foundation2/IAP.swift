@@ -23,6 +23,8 @@ SOFTWARE.
 */
 
 #if canImport(UIKit)
+#if os(watchOS)
+#else
 import StoreKit
 
 /// A class to inherit from which lets you easily control your purchases.
@@ -146,4 +148,5 @@ open class IAP: UITableViewController, SKProductsRequestDelegate, SKPaymentTrans
 		productsRequest.start()
 	}
 }
+#endif
 #endif

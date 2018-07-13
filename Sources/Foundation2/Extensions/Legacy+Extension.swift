@@ -26,7 +26,34 @@ SOFTWARE.
 #else
 
 import Foundation
+
+#if os(watchOS)
+#else
 import GameplayKit.GKRandomSource // .shuffled
+#endif
+
+public protocol CaseIterableEnum: Hashable {
+	static var allCases: [Self] { get }
+}
+
+public extension CaseIterableEnum {
+	
+	/// Returns: all Enum Values
+	public static var allCases: [Self] {
+		typealias Type = Self
+		let cases = AnySequence { () -> AnyIterator<Type> in
+			var raw = 0
+			return AnyIterator {
+				let current: Self = withUnsafePointer(to: &raw) { $0.withMemoryRebound(to: Type.self, capacity: 1) { $0.pointee } }
+				guard current.hashValue == raw else { return nil }
+				raw += 1
+				return current
+			}
+		}
+		
+		return Array(cases)
+	}
+}
 
 extension Array: Hashable where Element: Hashable {
 	public var hashValue: Int {
@@ -36,20 +63,17 @@ extension Array: Hashable where Element: Hashable {
 	}
 }
 
-public extension Collection {
-	public func shuffled() -> [Iterator.Element] {
-		let shuffledArray = (self as? NSArray)?.shuffled()
-		let outputArray = shuffledArray as? [Iterator.Element]
-		return outputArray ?? []
+public extension Collection where Index == Int {
+	#if os(watchOS)
+	#else
+	public var randomElement: Element? {
+		return isEmpty ? nil : self[Int(arc4random_uniform(UInt32(endIndex)))]
 	}
-	public mutating func shuffle() {
-		if let selfShuffled = self.shuffled() as? Self {
-			self = selfShuffled
-		}
-	}
+	#endif
 }
 
-/* OR:
+
+#if os(watchOS)
 public extension MutableCollection {
 	/// Shuffles the contents of this collection.
 	public mutating func shuffle() {
@@ -72,6 +96,20 @@ public extension Sequence {
 		result.shuffle()
 		return result
 	}
-}*/
+}
+#else
+public extension Collection {
+	public func shuffled() -> [Iterator.Element] {
+		let shuffledArray = (self as? NSArray)?.shuffled()
+		let outputArray = shuffledArray as? [Iterator.Element]
+		return outputArray ?? []
+	}
+	public mutating func shuffle() {
+		if let selfShuffled = self.shuffled() as? Self {
+			self = selfShuffled
+		}
+	}
+}
+#endif
 
 #endif
