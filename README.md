@@ -12,7 +12,7 @@ A great collection of extensions, protocols and classes that improves Swift and 
 
   - **UIColor**: extensions for DisplayP3, RBG, Hex values, return RGB components...
 
-  - **UIImage**: `contentsOf(url:)`,  `manageContentsOf(_ url:, completionHandler:, errorHandler:)`, `isLandscape`, `isPortrait`, `resizedImage(to targetSize:)`, `averageColor`.
+  - **UIImage**: `contentsOf(url:)`,  `manageContentsOf(_ url:, completionHandler:, errorHandler:)`, `isLandscape`, `isPortrait`, `resizedImage(to targetSize:)`, `averageColor`, `resizedWith(width:)`, `resizedWith(height:)`.
 
   - **UIColor**: `lighter(by percentage:)`, `darker(by percentage:)`, `isLight`, `isDark`, `inGrayScale`.
 
