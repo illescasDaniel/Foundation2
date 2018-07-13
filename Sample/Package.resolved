@@ -3,11 +3,11 @@
     "pins": [
       {
         "package": "Foundation2",
-        "repositoryURL": "/Users/Daniel/Documents/Programming/Swift/Foundation2Package/Foundation2",
+        "repositoryURL": "https://github.com/illescasDaniel/Foundation2.git",
         "state": {
           "branch": null,
-          "revision": "f56bb935dd3e74525a3fa15c9a0231bced534634",
-          "version": "1.0.4"
+          "revision": "1e981cd087e68e884bcd61b168c1b6a608ae292a",
+          "version": "1.1.0"
         }
       }
     ]
