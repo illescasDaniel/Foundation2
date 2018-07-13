@@ -25,11 +25,17 @@ SOFTWARE.
 #if os(iOS)
 import AVFoundation.AVMetadataObject
 
-extension AVMetadataObject.ObjectType {
-	var name: String {
+public extension AVMetadataObject.ObjectType {
+	
+	public var name: String {
 		return self.rawValue.components(separatedBy: ".").last ?? ""
 	}
-	static let allBarcodes: [AVMetadataObject.ObjectType] = [.upce, .code39, .code39Mod43, .ean13, .ean8,
+	
+	public static let twoDBarcodes: [AVMetadataObject.ObjectType] = [.qr, .dataMatrix, .aztec, .pdf417]
+	public static let allBarcodes: [AVMetadataObject.ObjectType] = [.upce, .code39, .code39Mod43, .ean13, .ean8,
 															 .code93, .code128, .pdf417, .qr, .aztec, .interleaved2of5, .itf14, .dataMatrix]
+	public var is1DBarcode: Bool {
+		return !AVMetadataObject.ObjectType.twoDBarcodes.contains(self)
+	}
 }
 #endif

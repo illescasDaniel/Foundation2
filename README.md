@@ -19,10 +19,11 @@ A great collection of extensions, protocols and classes that improves Swift and 
   - **String**: 
     - Default implementation for `CustomStringConvertible.description` with reflection.
     - `subscript(index: Int) `, `var deletingPathExtension: String `, `var localized: String`.
+    - `clear()`, `isNumeric`, `levenshteinDistanceScoreTo(string:, ...)`
 
   - **AVAudioPlayer**: `convenience init?(file:, type:, volume:)`, `setVolumeLevel(to:, duration:)` 
 
-  - **AVFoundation.AVMetadataObject**: `name`, `allBarcodes`.
+  - **AVFoundation.AVMetadataObject**: `name`, `allBarcodes`, `twoDBarcodes`, `is1DBarcode`. 
 
   - **UIApplication**: `openURL(from url:, completionHandler:)`, `openSettings()`, `versionNumber`, `buildNumber`, `versionAndBuildNumber`. 
 
@@ -52,6 +53,8 @@ A great collection of extensions, protocols and classes that improves Swift and 
 
   * [**CSVWriter**](https://github.com/illescasDaniel/CSVWriter): a CSV writer made in Swift. 
 
+  * **IAP**: a class to inherit from which lets you easily control your purchases. 
+
   * **TrueRandom**: very useful type which handles millions of random numbers. 
 
   * **SwiftMutex**: `PthreadMutex`, `Semaphore`, `NSLock.sync`. 
@@ -61,6 +64,8 @@ A great collection of extensions, protocols and classes that improves Swift and 
 - **Operators**:
 
   - **Power operator**: `**` (5 ** 2 = 25)
+
+  - **StringSimilarity** operator: "Daniel Illescas" =~ "Daniel ilescas" // will return `true`if the two strings are 85% similar or above.
 
   - **Apply operator**: `=>` 
 
@@ -83,7 +88,7 @@ import PackageDescription
 let package = Package(
     name: "Sample",
     dependencies: [
-        .package(url: "https://github.com/illescasDaniel/Foundation2.git", from: "1.0.4"),
+        .package(url: "https://github.com/illescasDaniel/Foundation2.git", from: "1.1"),
     ],
     targets: [
         .target(

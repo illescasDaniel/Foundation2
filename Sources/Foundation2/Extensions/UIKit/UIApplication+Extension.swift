@@ -25,25 +25,25 @@ SOFTWARE.
 #if canImport(UIKit)
 import UIKit
 
-extension UIApplication {
+public extension UIApplication {
 	
 	/// Attempts to open the resource at the specified URL asynchronously.
 	///
 	/// - Parameter url: A URL (Universal Resource Locator).
 	/// - Returns: Inform of the success or failure of opening the URL.
-	func openURL(from url: URL?, completionHandler: @escaping (Bool) -> () = {_ in }) {
+	public func openURL(from url: URL?, completionHandler: @escaping (Bool) -> () = {_ in }) {
 		if let url = url {
 			UIApplication.shared.open(url, options: [:], completionHandler: completionHandler)
 		}
 	}
 	
-	func openSettings(completionHandler: @escaping (Bool) -> () = {_ in }) {
+	public func openSettings(completionHandler: @escaping (Bool) -> () = {_ in }) {
 		let settingsURL = URL(string: UIApplicationOpenSettingsURLString)
 		UIApplication.shared.openURL(from: settingsURL, completionHandler: completionHandler)
 	}
 	
-	static let versionNumber = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "Unknown"
-	static let buildNumber = Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? ""
-	static let versionAndBuildNumber = "\(UIApplication.versionNumber) (\(UIApplication.buildNumber))"
+	public static let versionNumber = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "Unknown"
+	public static let buildNumber = Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? ""
+	public static let versionAndBuildNumber = "\(UIApplication.versionNumber) (\(UIApplication.buildNumber))"
 }
 #endif

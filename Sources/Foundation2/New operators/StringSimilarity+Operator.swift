@@ -24,8 +24,9 @@ SOFTWARE.
 
 import Foundation
 
-public extension FloatingPoint {
-	public static var π: Self { return Self.pi }
-	public static var tau: Self { return Self.pi * 2 }
-	public static var τ: Self { return Self.pi * 2 }
+infix operator =~
+
+/// Indicated if two strings are very similar to each other
+public func =~(string: String, otherString: String) -> Bool {
+	return string.levenshteinDistanceScoreTo(string: otherString) >= 0.85
 }

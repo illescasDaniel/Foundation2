@@ -25,9 +25,9 @@ SOFTWARE.
 #if canImport(UIKit)
 import UIKit.UIDevice
 
-extension UIDevice {
+public extension UIDevice {
 	
-	var modelName: String {
+	public var modelName: String {
 		
 		var sysinfo = utsname()
 		uname(&sysinfo)

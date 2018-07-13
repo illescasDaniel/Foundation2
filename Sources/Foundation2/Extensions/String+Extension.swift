@@ -42,8 +42,52 @@ public extension String {
 		return (self as NSString).deletingPathExtension
 	}
 	
-	/// Retuns a localized string with an empty comment
-	var localized: String {
+	/// Retuns a localized string with an empty comment.
+	public var localized: String {
 		return NSLocalizedString(self, comment: "")
+	}
+	
+	public mutating func clear() {
+		self = ""
+	}
+	
+	public var isNumeric: Bool {
+		return CharacterSet.decimalDigits.isSuperset(of: CharacterSet(charactersIn: self))
+	}
+	
+	/// Returns a number from 0.0 to 1.0 indicating the similarity to other string.
+	public func levenshteinDistanceScoreTo(string: String, ignoreCase: Bool = true, trimWhiteSpacesAndNewLines: Bool = true) -> Float {
+		
+		var firstString = self
+		var secondString = string
+		
+		if ignoreCase {
+			firstString = firstString.lowercased()
+			secondString = secondString.lowercased()
+		}
+		if trimWhiteSpacesAndNewLines {
+			firstString = firstString.trimmingCharacters(in: .whitespacesAndNewlines)
+			secondString = secondString.trimmingCharacters(in: .whitespacesAndNewlines)
+		}
+		
+		let empty = [Int](repeating:0, count: secondString.count)
+		var last = [Int](0...secondString.count)
+		
+		for (i, tLett) in firstString.enumerated() {
+			var cur = [i + 1] + empty
+			for (j, sLett) in secondString.enumerated() {
+				cur[j + 1] = tLett == sLett ? last[j] : Swift.min(last[j], last[j + 1], cur[j])+1
+			}
+			last = cur
+		}
+		
+		// maximum string length between the two
+		let lowestScore = max(firstString.count, secondString.count)
+		
+		if let validDistance = last.last {
+			return  1 - (Float(validDistance) / Float(lowestScore))
+		}
+		
+		return Float.greatestFiniteMagnitude
 	}
 }
