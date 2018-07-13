@@ -22,8 +22,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 #if canImport(UIKit)
-#if os(watchOS)
-#else
+#if !os(watchOS)
 import UIKit.UIImage
 
 public extension UIImage {

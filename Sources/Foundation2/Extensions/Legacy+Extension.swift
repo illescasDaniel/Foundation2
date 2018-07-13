@@ -27,8 +27,7 @@ SOFTWARE.
 
 import Foundation
 
-#if os(watchOS)
-#else
+#if !os(watchOS)
 import GameplayKit.GKRandomSource // .shuffled
 #endif
 
@@ -68,8 +67,7 @@ extension Array: Hashable where Element: Hashable {
 }
 
 public extension Collection where Index == Int {
-	#if os(watchOS)
-	#else
+	#if !os(watchOS)
 	public var randomElement: Element? {
 		return isEmpty ? nil : self[Int(arc4random_uniform(UInt32(endIndex)))]
 	}

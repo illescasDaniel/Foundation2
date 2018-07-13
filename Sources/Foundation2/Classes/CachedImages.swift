@@ -23,8 +23,7 @@ SOFTWARE.
 */
 
 #if canImport(UIKit)
-#if os(watchOS)
-#else
+#if !os(watchOS)
 import UIKit
 
 /// An easy class to manage online images in Swift.

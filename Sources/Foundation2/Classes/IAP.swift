@@ -23,8 +23,7 @@ SOFTWARE.
 */
 
 #if canImport(UIKit)
-#if os(watchOS)
-#else
+#if !os(watchOS)
 import StoreKit
 
 #if swift(>=4.2)
