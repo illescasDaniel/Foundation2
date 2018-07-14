@@ -24,6 +24,12 @@ SOFTWARE.
 
 import Foundation
 
+public protocol PropertiesPreferences: RawStringRepresentable {
+	/// Provies a defaultValue for each preference
+	var defaultvalue: Any { get }
+}
+public protocol CustomPropertiesPreferences: RawStringRepresentable { }
+
 #if swift(>=4.2)
 @dynamicMemberLookup
 #endif
@@ -31,6 +37,23 @@ import Foundation
 ///
 /// Help and reference: [https://github.com/illescasDaniel/PreferencesManagerSwift]()
 ///
+/// # Setup
+///
+/// * Create an enum which conforms to `String, PropertiesPreferences`.
+/// * Optionally create another enum inside which conforms to `String, CustomPropertiesPreferences` for the custom classes.
+///
+/// * Example:
+/// 	```
+///		public enum Properties: String, PropertiesPreferences { ... }
+///		```
+///
+/// ## Tip: create an extension for your Enum
+///		extension PreferencesManager {
+///			public subscript<T>(property: Properties) -> T? {
+///				get { return self.userDefaults.value(fromKey: property.rawValue) }
+///				set { self.userDefaults.set(newValue, forKey: property.	rawValue) }
+///			}
+///		}
 /// # Usage
 ///
 /// ## Get value:
@@ -44,30 +67,6 @@ import Foundation
 /// ```
 public final class PreferencesManager {
 	
-	#if swift(>=4.2)
-	#warning("TODO: complete properties (remove this after you do)")
-	#endif
-	public enum Properties: String {
-		
-		case name
-		case score
-		
-		public var defaultvalue: Any {
-			switch self {
-			case .name: return ""
-			case .score: return 0
-			}
-		}
-		
-		#if swift(>=4.2)
-		#warning("TODO: add properties for custom classes (remove this after you do)")
-		#endif
-		/// Custom classes must conform to `Codable` protocol
-		public enum Custom: String {
-			case user
-		}
-	}
-	
 	public static let standard = PreferencesManager()
 	private let userDefaults: UserDefaults
 	
@@ -80,19 +79,19 @@ public final class PreferencesManager {
 		return nil
 	}
 	
-	public func valueOrDefault<T>(for property: Properties) -> T! {
+	public func valueOrDefault<T, PropertiesEnumType: PropertiesPreferences>(for property: PropertiesEnumType) -> T! {
 		return self[property] ?? (property.defaultvalue as! T)
 	}
 	
-	public subscript<T>(property: Properties, default defaultvalue: T) -> T {
+	public subscript<T, PropertiesEnumType: PropertiesPreferences>(property: PropertiesEnumType, default defaultvalue: T) -> T {
 		return self[property] ?? defaultvalue
 	}
-	public subscript<T: Codable>(property: Properties.Custom, default defaultvalue: T) -> T {
+	public subscript<T: Codable, CustomPropertieEnumType: CustomPropertiesPreferences>(property: CustomPropertieEnumType, default defaultvalue: T) -> T {
 		return self[property] ?? defaultvalue
 	}
 	
 	#if swift(>=4.2)
-	public subscript<T>(property: Properties) -> T? {
+	public subscript<T,PropertiesEnumType: PropertiesPreferences>(property: PropertiesEnumType) -> T? {
 	get { return self[dynamicMember: property.rawValue] }
 	set { self[dynamicMember: property.rawValue] = newValue }
 	}
@@ -101,26 +100,30 @@ public final class PreferencesManager {
 	set { self.userDefaults.set(newValue, forKey: propertyKey) }
 	}
 	#else
-	public subscript<T>(property: Properties) -> T? {
+	public subscript<T,PropertiesEnumType: PropertiesPreferences>(property: PropertiesEnumType) -> T? {
 		get { return self.userDefaults.value(fromKey: property.rawValue) }
 		set { self.userDefaults.set(newValue, forKey: property.rawValue) }
 	}
+	public subscript<T>(property: String) -> T? {
+		get { return self.userDefaults.value(fromKey: property) }
+		set { self.userDefaults.set(newValue, forKey: property) }
+	}
 	#endif
 	
-	public subscript<T: Codable>(property: Properties.Custom) -> T? {
+	public subscript<T: Codable, CustomPropertieEnumType: CustomPropertiesPreferences>(property: CustomPropertieEnumType) -> T? {
 		get { return self.userDefaults.decodableValue(fromKey: property.rawValue) }
 		set { self.userDefaults.set(newValue.inJSON, forKey: property.rawValue) }
 	}
 	
-	public func setMultiple(_ values: [Properties: Any]) {
+	public func setMultiple<PropertiesEnumType: PropertiesPreferences>(_ values: [PropertiesEnumType: Any]) {
 		values.forEach { self[$0.key] = $0.value }
 	}
 	
-	public func setMultiple<T: Codable>(_ values: [Properties.Custom: T]) { // Might not be very useful because it would only allow one type (T)
+	public func setMultiple<T: Codable, CustomPropertieEnumType: CustomPropertiesPreferences>(_ values: [CustomPropertieEnumType: T]) { // Might not be very useful because it would only allow one type (T)
 		values.forEach { self[$0.key] = $0.value }
 	}
 	
-	public func remove(property: Properties) {
+	public func remove<PropertiesEnumType: RawStringRepresentable>(property: PropertiesEnumType) {
 		self.userDefaults.removeObject(forKey: property.rawValue)
 	}
 }

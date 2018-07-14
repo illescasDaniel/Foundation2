@@ -28,8 +28,6 @@ import Foundation
 import GameplayKit.GKRandomSource
 #endif
 
-public typealias Byte = UInt8
-
 /// A class to manage big chunks of random numbers in an easy and very fast way.
 ///
 /// # Usage
@@ -95,9 +93,9 @@ public final class FastRandom<T: Initiable> {
 
 public extension FastRandom where FastRandom.Element == Int {
 	/// A FastRandom object of integers
-	static let standard = FastRandom<Int>()
+	static let integers = FastRandom<Int>()
 	/// A FastRandom object of integers with buffer size of 5.000.000
-	static let bigStandard = FastRandom<Int>(bufferSize: 5_000_000)
+	static let lotsOfIntegers = FastRandom<Int>(bufferSize: 5_000_000)
 }
 public extension FastRandom where FastRandom.Element == Byte {
 	/// A FastRandom object of bytes

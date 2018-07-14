@@ -46,6 +46,10 @@ public extension UIAlertController {
 		self.addAction(alertAction)
 		return self
 	}
+	
+	public func present(in viewController: UIViewController, completion: (() -> Void)? = nil) {
+		viewController.present(self, animated: true, completion: completion)
+	}
 }
 #endif
 #endif

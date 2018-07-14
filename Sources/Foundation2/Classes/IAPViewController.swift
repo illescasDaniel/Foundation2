@@ -27,17 +27,19 @@ SOFTWARE.
 import StoreKit
 
 #if swift(>=4.2)
-extension IAP.ItemID: CaseIterable { }
+protocol ItemIDProtocol: RawStringRepresentable, CaseIterable { }
 #else
-extension IAP.ItemID: CaseIterableEnum { }
+protocol ItemIDProtocol: RawStringRepresentable, CaseIterableEnum { }
 #endif
+
 /// A class to inherit from which lets you easily control your purchases.
 /// - Note: Instead of `IAP` being a UITableViewController you can change this class so it inherits from a UIViewController.
 ///
 /// # Setup
-/// * Inherit from this class
-/// * Call `super.viewDidLoad()` inside your `viewDidLoad()`
-/// * Modify the items inside `ItemID` enum by adding/changing their 'IDs'.
+/// * Inherit from this class in a ViewController
+/// * Create an Enum which implements `String, ItemIDProtocol`
+/// * In your `viewDidLoad()`
+/// 	* Call `self.fetchAvailable(products: Set<String>)`. In products use `YourEnumItems.all` to specify all of your products.
 /// * Localize the following strings:
 /// 	* IAP_PAYMENT_SUCCESS_TITLE, IAP_PAYMENT_SUCCESS_MESSAGE, IAP_PAYMENT_SUCCESS_OK_DISMISS_BUTTON_TITLE
 ///		* IAP_PAYMENT_ERROR_TITLE, IAP_PAYMENT_ERROR_MESSAGE, IAP_PAYMENT_SUCCESS_ERROR_BUTTON_TITLE
@@ -45,26 +47,36 @@ extension IAP.ItemID: CaseIterableEnum { }
 ///
 /// # Usage
 /// Call `purchase(item: ItemID)`, with the proper ItemID.
-open class IAP: UITableViewController, SKProductsRequestDelegate, SKPaymentTransactionObserver {
-	
-	public enum ItemID: String {
-		case item1 = "com.yourusername.YourAppName.itemToPurchaseName1"
-		case item2 = "com.yourusername.YourAppName.itemToPurchaseName2"
-		case item3 = "com.yourusername.YourAppName.itemToPurchaseName3"
-		case item4 = "com.yourusername.YourAppName.itemToPurchaseName4"
+///
+/// # Class example:
+/** ```
+
+	class TestViewController: IAPViewController {
+
+		enum ItemID: String, ItemIDProtocol {
+			case item1 = "com.package"
+			case item2 = "com.package.test"
+		}
+
+		override func viewDidLoad() {
+			super.viewDidLoad()
+			self.fetchAvailable(products: ItemID.all)
+		}
+
+		// example
+		func buttonAction() {
+			self.purchase(item: ItemID.item1)
+		}
 	}
-	
+	```
+*/
+open class IAPViewController: UIViewController, SKProductsRequestDelegate, SKPaymentTransactionObserver {
+
 	private var iapProducts: [SKProduct] = []
 	
-	/// You MUST call this method on your inherited class (`super.viewDidLoad()`)
-	override open func viewDidLoad() {
-		super.viewDidLoad()
-		self.fetchAvailableProducts()
-	}
-	
-	@discardableResult func purchase(item: ItemID) -> Bool {
+	@discardableResult func purchase<ItemType: ItemIDProtocol>(item: ItemType) -> Bool {
 		
-		let product = iapProducts.first {
+		let product = self.iapProducts.first {
 			$0.productIdentifier == item.rawValue
 		}
 		
@@ -73,6 +85,12 @@ open class IAP: UITableViewController, SKProductsRequestDelegate, SKPaymentTrans
 		}
 		
 		return false
+	}
+	
+	public func fetchAvailable(products: Set<String>)  {
+		let productsRequest = SKProductsRequest(productIdentifiers: products)
+		productsRequest.delegate = self
+		productsRequest.start()
 	}
 	
 	// MARK: SKProductsRequestDelegate
@@ -136,12 +154,6 @@ open class IAP: UITableViewController, SKProductsRequestDelegate, SKPaymentTrans
 			self.present(alertController, animated: true)
 			return false
 		}
-	}
-	
-	private func fetchAvailableProducts()  {
-		let productsRequest = SKProductsRequest(productIdentifiers: ItemID.all)
-		productsRequest.delegate = self
-		productsRequest.start()
 	}
 }
 #endif

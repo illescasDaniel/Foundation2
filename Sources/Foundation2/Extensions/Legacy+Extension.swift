@@ -22,8 +22,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-#if swift(>=4.2)
-#else
+#if !swift(>=4.2)
 
 import Foundation
 

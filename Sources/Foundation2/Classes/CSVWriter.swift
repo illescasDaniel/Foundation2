@@ -57,7 +57,7 @@ public final class CSVWriter {
 		if let validNumberFormatter = numberFormatter {
 			self.numberFormatter = validNumberFormatter
 		} else {
-			self.numberFormatter = useDefaultNumberFormatter ? NumberFormatter(decimalSeparator: ",", numberStyle: .decimal) : nil
+			self.numberFormatter = useDefaultNumberFormatter ? NumberFormatter(decimalSeparator: ".", numberStyle: .decimal) : nil
 		}
 		
 		self.outputFile = outputFile
