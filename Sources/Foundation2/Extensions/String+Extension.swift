@@ -24,12 +24,6 @@ SOFTWARE.
 
 import Foundation.NSString
 
-public extension CustomStringConvertible {
-	public var description: String {
-		return String(describing: Self.self) + "(" + Mirror(reflecting: self).children.map({ ($0 ?? "Unknown") + ": \($1)" }).joined(separator: ", ") + ")"
-	}
-}
-
 public extension String {
 	/// Accesses the element at the specified position.
 	public subscript(index: Int) -> Character {
@@ -39,6 +33,7 @@ public extension String {
 	
 	/// (From `NSString`) A new string made by deleting the extension (if any, and only the last) from the receiver.
 	public var deletingPathExtension: String {
+		// or?: URL(string: self)?.deletingPathExtension().absoluteString
 		return (self as NSString).deletingPathExtension
 	}
 	

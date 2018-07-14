@@ -25,7 +25,15 @@ SOFTWARE.
 import Foundation
 
 public extension FloatingPoint {
+	
 	public static var π: Self { return Self.pi }
 	public static var tau: Self { return Self.pi * 2 }
 	public static var τ: Self { return Self.pi * 2 }
+	
+	public static func %(lhs: Self, rhs: Self) -> Self {
+		return lhs.truncatingRemainder(dividingBy: rhs)
+	}
+	public static func %=(lhs: inout Self, rhs: Self) {
+		lhs.formTruncatingRemainder(dividingBy: rhs)
+	}
 }

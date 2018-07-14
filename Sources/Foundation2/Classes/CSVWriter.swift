@@ -24,14 +24,6 @@ SOFTWARE.
 
 import Foundation
 
-public extension NumberFormatter {
-	public convenience init(decimalSeparator: String, numberStyle: NumberFormatter.Style) {
-		self.init()
-		self.currencyDecimalSeparator = decimalSeparator
-		self.numberStyle = numberStyle
-	}
-}
-
 /// A CSV writer made in Swift.
 ///
 /// # Usage

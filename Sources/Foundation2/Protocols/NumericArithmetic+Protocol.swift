@@ -24,44 +24,23 @@ SOFTWARE.
 
 import Foundation
 
-public protocol NumericArithmetic: ExpressibleByIntegerLiteral {
-	static func +(lhs: Self, rhs: Self) -> Self
-	static func -(lhs: Self, rhs: Self) -> Self
-	static func *(lhs: Self, rhs: Self) -> Self
-	static func /(lhs: Self, rhs: Self) -> Self
-	
-	static func +=(lhs: inout Self, rhs: Self)
-	static func -=(lhs: inout Self, rhs: Self)
-	static func *=(lhs: inout Self, rhs: Self)
-	static func /=(lhs: inout Self, rhs: Self)
-}
-
 public protocol ModulusArithmetic {
 	static func %(lhs: Self, rhs: Self) -> Self
 	static func %=(lhs: inout Self, rhs: Self)
 }
 
-public protocol SignedNumericArithmetic: NumericArithmetic {
-	prefix static func -(value: Self) -> Self
-}
-
-public protocol BinaryIntegerArithmetic: NumericArithmetic, ModulusArithmetic, BinaryInteger { }
-public protocol BinarySignedIntegerArithmetic: SignedNumericArithmetic, BinaryIntegerArithmetic { }
-public protocol BinaryFloatingPointArithmetic: SignedNumericArithmetic, BinaryFloatingPoint { }
-public protocol FloatingPointArithmetic: SignedNumericArithmetic, FloatingPoint {}
-
-extension Int8   : BinarySignedIntegerArithmetic { }
-extension Int16  : BinarySignedIntegerArithmetic { }
-extension Int32  : BinarySignedIntegerArithmetic { }
-extension Int64  : BinarySignedIntegerArithmetic { }
-extension Int    : BinarySignedIntegerArithmetic { }
-extension UInt8  : BinaryIntegerArithmetic { }
-extension UInt16 : BinaryIntegerArithmetic { }
-extension UInt32 : BinaryIntegerArithmetic { }
-extension UInt64 : BinaryIntegerArithmetic { }
-extension UInt   : BinaryIntegerArithmetic { }
-extension Float32 : BinaryFloatingPointArithmetic, FloatingPointArithmetic { }
-extension Float64 : BinaryFloatingPointArithmetic, FloatingPointArithmetic { }
+extension Int8   : ModulusArithmetic { }
+extension Int16  : ModulusArithmetic { }
+extension Int32  : ModulusArithmetic { }
+extension Int64  : ModulusArithmetic { }
+extension Int    : ModulusArithmetic { }
+extension UInt8  : ModulusArithmetic { }
+extension UInt16 : ModulusArithmetic { }
+extension UInt32 : ModulusArithmetic { }
+extension UInt64 : ModulusArithmetic { }
+extension UInt   : ModulusArithmetic { }
+extension Float32 : ModulusArithmetic { }
+extension Float64 : ModulusArithmetic { }
 #if arch(x86_64) || arch(i386)
-extension Float80 : BinaryFloatingPointArithmetic, FloatingPointArithmetic { }
+extension Float80 : ModulusArithmetic { }
 #endif

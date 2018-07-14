@@ -29,7 +29,15 @@ public extension AVAudioPlayer {
 	public enum AudioTypes: String {
 		case mp3
 		case wav
-		// ...
+		case m4a
+		case aac
+		case ac3
+		case adts
+		case aif
+		case aiff
+		case aifc
+		case caf
+		// ... ?
 	}
 	
 	public convenience init?(file: String, type: AudioTypes, volume: Float? = nil) {

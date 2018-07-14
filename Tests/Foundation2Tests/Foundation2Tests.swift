@@ -14,7 +14,7 @@ final class Foundation2Tests: XCTestCase {
 				}
 			}
 		}
-		if #available(OSX 10.11, *) {
+		if #available(iOS 9.0, macOS 10.11, *) {
 			let value = TrueRandom.nextInt(upperBound: 1000)
 			print(value)
 		}

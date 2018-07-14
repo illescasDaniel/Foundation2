@@ -37,3 +37,10 @@ public extension Swift.Collection {
 		return self.indices.contains(index) ? self[index] : nil
 	}
 }
+
+public extension Swift.Collection where Element: Numeric {
+	/// [1,2,3] => 6
+	public var sum: Element {
+		return self.reduce(0, +)
+	}
+}

@@ -1,6 +1,6 @@
 # Foundation2
 
-[![Swift version](https://img.shields.io/badge/Swift-4-orange.svg)](https://kotlinlang.org/)[![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/illescasDaniel/Foundation2/blob/master/LICENSE)[![Version](https://img.shields.io/badge/version-1.2.4-green.svg)](https://github.com/illescasDaniel/Foundation2/releases)
+[![Swift version](https://img.shields.io/badge/Swift-4-orange.svg)](https://kotlinlang.org/)[![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/illescasDaniel/Foundation2/blob/master/LICENSE)[![Version](https://img.shields.io/badge/version-1.3.0-green.svg)](https://github.com/illescasDaniel/Foundation2/releases)
 
 A great collection of extensions, protocols and classes that improves Swift and extend the Foundation module 😉.
 
@@ -16,7 +16,7 @@ A great collection of extensions, protocols and classes that improves Swift and 
 
   - **UIColor**: `lighter(by percentage:)`, `darker(by percentage:)`, `isLight`, `isDark`, `inGrayScale`.
 
-  - **Collection**: `subscript (safe index: Index)`.
+  - **Collection**: `subscript (safe index: Index)`, `sum`.
 
   - **String**: 
     - Default implementation for `CustomStringConvertible.description` with reflection.
@@ -51,10 +51,11 @@ A great collection of extensions, protocols and classes that improves Swift and 
 
 - **Protocols**:
 
-  - **Arithmetic protocols**: that allows yoo to perform arithmetic operations with generic types conforming to these. `NumericArithmetic`, `BinaryIntegerArithmetic`, `BinarySignedIntegerArithmetic`, `BinaryFloatingPointArithmetic`, `FloatingPointArithmetic`. 
-  -  **Initiable**: `protocol Initiable { init() }`. Making a type conform to this protocol allows it to create an instance in generic functions where <`T`: `Initiable`>.
+  - **Initiable**: `protocol Initiable { init() }`. Making a type conform to this protocol allows it to create an instance in generic functions where <`T`: `Initiable`>.
 
-  
+  - **Arithmetic protocols**: that allows you to perform some extra operations with generic types (useful when using `Numeric` types).  `ModulusArithmetic`. 
+
+    
 
 - **Classes**:
 
@@ -72,7 +73,7 @@ A great collection of extensions, protocols and classes that improves Swift and 
 
   * [**CSVWriter**](https://github.com/illescasDaniel/CSVWriter): a CSV writer made in Swift. 
 
-  * **IAP**: a class to inherit from which lets you easily control your purchases. 
+  * **IAPViewController**: a viewController which lets you easily control your purchases. 
 
   * **TrueRandom**: very useful type which handles millions of random numbers. 
 
@@ -102,24 +103,34 @@ A great collection of extensions, protocols and classes that improves Swift and 
 
 ## Instalation
 
-Add `Foundation2` in your `Package.swift` dependencies.
+- **Swift package manager**:
 
-Like this (take a look at the **Sample** folder):
+  Add `Foundation2` in your `Package.swift` dependencies.
 
-```swift
-import PackageDescription
+  Like this (take a look at the **Sample** folder):
 
-let package = Package(
-    name: "Sample",
-    dependencies: [
-        .package(url: "https://github.com/illescasDaniel/Foundation2.git", from: "1.2.2"),
-    ],
-    targets: [
-        .target(
-            name: "Sample",
-            dependencies: [
-                "Foundation2"
-            ]),
-    ]
-)
-```
+  ```swift
+  import PackageDescription
+
+  let package = Package(
+      name: "Sample",
+      dependencies: [
+          .package(url: "https://github.com/illescasDaniel/Foundation2.git", from: "1.2.2"),
+      ],
+      targets: [
+          .target(
+              name: "Sample",
+              dependencies: [
+                  "Foundation2"
+              ]),
+      ]
+  )
+  ```
+
+- Normal project:
+
+  * Save your currect project as a workspace (on the same directory of your project).
+  * Close your project and open the workspace.
+  * Drag all the files of this repo (except for the Sample folder) to the same directory as your project workspace.
+  * Open your workspace and drag the `Foundation2.xcodeproj` project at the same level as yours in Xcode.
+  * Go to your `Linked Frameworks and Libraries` and add `Foundation2.framework
