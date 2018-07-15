@@ -24,12 +24,17 @@ SOFTWARE.
 
 import Foundation
 
-infix operator =~: ComparisonPrecedence
+postfix operator <>
+postfix operator <|>
 
-/// Indicates if two strings are very similar to each other
-public func =~(string: String?, otherString: String?) -> Bool {
-	if let string = string, let otherString = otherString {
-		return string.levenshteinDistanceScoreTo(string: otherString) >= 0.85
-	}
-	return false
+/// Returns the string trimming both ends of the string containing white spaces or new lines
+postfix func <> (lhs: String?) -> String {
+	return lhs?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
+}
+
+/// Trims both ends of the string containing white spaces or new lines and returns itself
+@discardableResult
+postfix func <|> (lhs: inout String?) -> String {
+	lhs = lhs?.trimmingCharacters(in: .whitespacesAndNewlines)
+	return lhs ?? ""
 }

@@ -1,10 +1,61 @@
 # Foundation2
 
-[![Swift version](https://img.shields.io/badge/Swift-4-orange.svg)](https://kotlinlang.org/)[![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/illescasDaniel/Foundation2/blob/master/LICENSE)[![Version](https://img.shields.io/badge/version-1.3.0-green.svg)](https://github.com/illescasDaniel/Foundation2/releases)
+[![Swift version](https://img.shields.io/badge/Swift-4-orange.svg)](https://kotlinlang.org/)[![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/illescasDaniel/Foundation2/blob/master/LICENSE)[![Version](https://img.shields.io/badge/version-1.4-green.svg)](https://github.com/illescasDaniel/Foundation2/releases)
 
 A great collection of extensions, protocols and classes that improves Swift and extend the Foundation module 😉.
 
-## Contents
+## Content
+
+- **Operators**:
+
+  - **Power operator**: `**`
+
+    ```swift
+    print(5 ** 2) // 25
+    ```
+
+  - **String similarity operator**: `=~`
+
+    ```swift
+    // Will return true if the two strings are 85% similar or above.
+    print("Daniel Illescas" =~ "Daniel ilescas")
+    ```
+
+  - **Apply operator**: `=>` 
+
+    ```swift
+    let daniel = Human() => { its in
+      its.name = "Daniel"
+      its.age = 10
+    }
+    ```
+
+  - **Operators to trim strings**: `<>`, `<|>`
+
+    ```swift
+    let name = "John "
+    print(name<>) // "John"
+    var name = " Daniel "
+    name<|> // name = "Daniel"
+    ```
+
+  - **Default value operators**: `..`, `..|`. Works with `String`, `Numeric`, `Dictionary`, `Initiable`...
+
+    ```swift
+    let paths: [String]? = nil
+    print(paths..) // []
+    let value: Float? = nil
+    print(value..) // value = 0
+    ```
+
+- **Protocols**:
+
+  - **AutoProtocols**: `AutoEquatable`, `AutoCustomDebugStringConvertible`,`AutoCustomStringConvertible`, `AutoComparable`. 
+  
+  - **Initiable**: `protocol Initiable { init() }`. Making a type conform to this protocol allows it to create an instance in generic functions where `<T: Initiable>`.
+
+  - **Arithmetic protocols**: that allows you to perform some extra operations with generic types (useful when using `Numeric` types).  `ModulusArithmetic`. 
+
 
 - **Extensions**:
 
@@ -45,16 +96,9 @@ A great collection of extensions, protocols and classes that improves Swift and 
 
   - **CIContext**: easy properties to use a metal context or a OpenGL context. 
 
+  - **Mirror**: `deepChildren(of originalValue: )`
+
   - **Extensions for Swift 4.1 or lower**: `shuffle()`, `shuffled`, `Array.hashValue`, `CaseIterableEnum`, `Collection.randomElement` .
-
-    
-
-- **Protocols**:
-
-  - **Initiable**: `protocol Initiable { init() }`. Making a type conform to this protocol allows it to create an instance in generic functions where <`T`: `Initiable`>.
-
-  - **Arithmetic protocols**: that allows you to perform some extra operations with generic types (useful when using `Numeric` types).  `ModulusArithmetic`. 
-
     
 
 - **Classes**:
@@ -79,27 +123,7 @@ A great collection of extensions, protocols and classes that improves Swift and 
 
   * **SwiftMutex**: `PthreadMutex`, `Semaphore`, `NSLock.sync`. 
 
-    
 
-- **Operators**:
-
-  - **Power operator**: `**` (5 ** 2 = 25)
-
-  - **StringSimilarity operator**: `=~`
-
-    ```swift
-    // Will return true if the two strings are 85% similar or above.
-    print("Daniel Illescas" =~ "Daniel ilescas")
-    ```
-
-  - **Apply operator**: `=>` 
-
-  - ```swift
-    let daniel = Human() => { its in
-      its.name = "Daniel"
-      its.age = 10
-    }
-    ```
 
 ## Instalation
 
@@ -115,7 +139,7 @@ A great collection of extensions, protocols and classes that improves Swift and 
   let package = Package(
       name: "Sample",
       dependencies: [
-          .package(url: "https://github.com/illescasDaniel/Foundation2.git", from: "1.2.2"),
+          .package(url: "https://github.com/illescasDaniel/Foundation2.git", from: "1.4"),
       ],
       targets: [
           .target(

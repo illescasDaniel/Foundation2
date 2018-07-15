@@ -24,32 +24,61 @@ SOFTWARE.
 
 import Foundation
 
+/// Compares all properties of the object, including the properties of the objects of the properties too (making a deep search).
+///
+/// When one value of `lhs` doesn't match with its corresponding in `rhs`, it returns `false`.
+///
+/// If `lhs` and `rhs` are classes and are the exact same object (`===`) it will return `true` without further comparisons.
+/// - Complexity:
+///		* Ω(1) when is the same object.
+///		* O(*n*) worst case trying to find a property that is different before making the deep search.
+///		* Probably not a good idea to use on classes with lots of properties which are objects of classes which has also other properties, because it will try to make a deep search of all the subproperties until finds one which value differs from `rhs`.
 public protocol AutoEquatable: Equatable {}
 public extension AutoEquatable {
 	public static func ==(lhs: Self, rhs: Self) -> Bool {
-		for (lhsMirror, rhsMirror) in zip(Mirror(reflecting: lhs).children, Mirror(reflecting: rhs).children) {
-			if ("\(lhsMirror.value)" != "\(rhsMirror.value)") {
-				return false
-			}
+		guard (lhs as AnyObject) !== (rhs as AnyObject) else { return true }
+		for (lhsChildren, rhsChildren) in zip(Mirror(reflecting: lhs).children, Mirror(reflecting: rhs).children) {
+			if "\(lhsChildren.value)" != "\(rhsChildren.value)" { return false }
+		}
+		for (lhsChildren, rhsChildren) in zip(Mirror.deepChildren(of: lhs), Mirror.deepChildren(of: rhs)) {
+			if "\(lhsChildren.value)" != "\(rhsChildren.value)" { return false }
 		}
 		return true
 	}
 }
 
+public protocol AutoCustomDebugStringConvertible: CustomDebugStringConvertible {}
+public extension AutoCustomDebugStringConvertible {
+	public var debugDescription: String {
+		let className = String(describing: Self.self)
+		let labelsAndValues = Mirror.deepChildren(of: self).lazy.map {
+			let childValue = Mirror(reflecting: $0.value).subjectType == String.self ? "\"\($0.value)\"" : $0.value
+			return "\($0.key.replacingOccurrences(of: className + ".", with: "")): \(childValue)"
+			}.joined(separator: ", ")
+		return String(describing: Self.self) + "(" + labelsAndValues + ")"
+	}
+}
+
+// THESE below might not be very accurate
+
+/// Offers a basic representation of the properties inside the type. For a more detailed representation use `AutoCustomDebugStringConvertible`.
 public protocol AutoCustomStringConvertible: CustomStringConvertible {}
 public extension AutoCustomStringConvertible {
 	public var description: String {
+		
 		let labelsAndValues: [String] = Mirror(reflecting: self).children.map { child in
-			var modifiedValue = child.value
-			if Mirror(reflecting: modifiedValue).subjectType == String.self {
-				modifiedValue = "\"\(modifiedValue)\""
+			var childValue = child.value
+			if Mirror(reflecting: childValue).subjectType == String.self {
+				childValue = "\"\(childValue)\""
 			}
-			return "\(child.label ?? "Unknown"): \(modifiedValue)"
+			let childValueString = "\(childValue)".split(separator: ".").last
+			return "\(child.label ?? "Unknown"): \(childValueString ?? childValue)"
 		}
 		return String(describing: Self.self) + "(" + labelsAndValues.joined(separator: ", ") + ")"
 	}
 }
 
+/// Takes the first property of `lhs` that is a number and compare it with the corresponding value in `rhs`.
 public protocol AutoComparable: Comparable {}
 public extension AutoComparable {
 	public static func <(lhs: Self, rhs: Self) -> Bool {

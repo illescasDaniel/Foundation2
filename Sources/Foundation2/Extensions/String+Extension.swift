@@ -55,16 +55,22 @@ public extension String {
 	/// Returns a number from 0.0 to 1.0 indicating the similarity to other string.
 	public func levenshteinDistanceScoreTo(string: String, ignoreCase: Bool = true, trimWhiteSpacesAndNewLines: Bool = true) -> Float {
 		
+		guard !self.isEmpty && !string.isEmpty else { return 0.0 }
+		guard self != string else { return 1.0 }
+		
 		var firstString = self
 		var secondString = string
 		
 		if ignoreCase {
 			firstString = firstString.lowercased()
 			secondString = secondString.lowercased()
+			guard firstString != secondString else { return 1.0 }
 		}
 		if trimWhiteSpacesAndNewLines {
 			firstString = firstString.trimmingCharacters(in: .whitespacesAndNewlines)
 			secondString = secondString.trimmingCharacters(in: .whitespacesAndNewlines)
+			guard firstString != secondString else { return 1.0 }
+			guard !firstString.isEmpty && !secondString.isEmpty else { return 0.0 }
 		}
 		
 		let empty = [Int](repeating:0, count: secondString.count)
@@ -85,6 +91,6 @@ public extension String {
 			return  1 - (Float(validDistance) / Float(lowestScore))
 		}
 		
-		return Float.greatestFiniteMagnitude
+		return 0.0
 	}
 }

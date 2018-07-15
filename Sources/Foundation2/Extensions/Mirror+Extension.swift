@@ -24,12 +24,28 @@ SOFTWARE.
 
 import Foundation
 
-infix operator =~: ComparisonPrecedence
-
-/// Indicates if two strings are very similar to each other
-public func =~(string: String?, otherString: String?) -> Bool {
-	if let string = string, let otherString = otherString {
-		return string.levenshteinDistanceScoreTo(string: otherString) >= 0.85
+public extension Mirror {
+	
+	public static func deepChildren(of originalValue: Any) -> [String: Any] {
+		
+		var dictionary: [String: Any] = [:]
+		
+		for (label, value) in Mirror(reflecting: originalValue).children {
+			
+			var originalValueType = String(describing: originalValue.self).split(separator: ".") as [Substring]
+			if originalValueType.count > 1 { originalValueType = [Substring](originalValueType.dropFirst()) }
+			let name = "\(originalValueType.joined(separator: ".")).\(label ?? "\(value)")"
+			
+			/*let originalValueType = String(describing: originalValue.self)
+			let name = "\(originalValueType).\(label ?? "\(value)")"*/
+			
+			if !Mirror(reflecting: value).children.isEmpty {
+				dictionary[name] = Mirror.deepChildren(of: value)
+			} else {
+				//dictionary[label ?? "\(value)"] = value
+				dictionary[name] = value
+			}
+		}
+		return dictionary
 	}
-	return false
 }

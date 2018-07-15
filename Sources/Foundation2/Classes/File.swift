@@ -63,6 +63,16 @@ public struct File {
 		return content
 	}
 	
+	@discardableResult public static func copy(file filePath: URL?, to outputFilePath: URL?) -> Bool {
+		guard let filePath = filePath, let outputFilePath = outputFilePath else { return false }
+		do {
+			try FileManager.default.copyItem(at: filePath, to: outputFilePath)
+		} catch {
+			return false
+		}
+		return true
+	}
+	
 	@discardableResult public  static func remove(file: String, from directory: String) -> Bool {
 		do {
 			try FileManager.default.removeItem(atPath: "\(directory)/\(file)")
