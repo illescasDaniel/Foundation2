@@ -70,7 +70,6 @@ A great collection of extensions, protocols and classes that improves Swift and 
   - **Collection**: `subscript (safe index: Index)`, `sum`.
 
   - **String**: 
-    - Default implementation for `CustomStringConvertible.description` with reflection.
     - `subscript(index: Int)`, `var deletingPathExtension: String `, `var localized: String`.
     - `clear()`, `isNumeric`, `levenshteinDistanceScoreTo(string:, ...)`
 
@@ -96,7 +95,7 @@ A great collection of extensions, protocols and classes that improves Swift and 
 
   - **CIContext**: easy properties to use a metal context or a OpenGL context. 
 
-  - **Mirror**: `deepChildren(of originalValue: )`
+  - **Mirror**: `deepChildren(of originalValue: )`.
 
   - **Extensions for Swift 4.1 or lower**: `shuffle()`, `shuffled`, `Array.hashValue`, `CaseIterableEnum`, `Collection.randomElement` .
     
@@ -139,7 +138,7 @@ A great collection of extensions, protocols and classes that improves Swift and 
   let package = Package(
       name: "Sample",
       dependencies: [
-          .package(url: "https://github.com/illescasDaniel/Foundation2.git", from: "1.4"),
+          .package(url: "https://github.com/illescasDaniel/Foundation2.git", from: "1.4.0"),
       ],
       targets: [
           .target(
