@@ -37,6 +37,11 @@ public extension String {
 		return (self as NSString).deletingPathExtension
 	}
 	
+	/// Returns the string with white spaces and new lines trimmed from both ends of the strings
+	var trimmed: String {
+		return self.trimmingCharacters(in: .whitespacesAndNewlines)
+	}
+	
 	/// Retuns a localized string with an empty comment.
 	///
 	/// You also have `RawRepresentable.rawLocalized` to accesss the localized versions of the raw strings values

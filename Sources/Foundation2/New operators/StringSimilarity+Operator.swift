@@ -24,7 +24,7 @@ SOFTWARE.
 
 import Foundation
 
-infix operator =~: ComparisonPrecedence
+infix operator =~ : ComparisonPrecedence
 
 /// Indicates if two strings are very similar to each other
 public func =~(string: String?, otherString: String?) -> Bool {

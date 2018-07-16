@@ -22,7 +22,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-infix operator =>: AssignmentPrecedence
+infix operator => : AssignmentPrecedence
 
 /// # Usage
 ///	```
@@ -40,9 +40,12 @@ infix operator =>: AssignmentPrecedence
 /// - Requires:
 ///		- `T` must be a class in order to modify its values.
 ///		- `T` obviosly needs to have a default empty constructor.
-public func =><T>(lhs: T, rhs: (T) ->()) -> T {
+public func apply<T>(_ lhs: T, _ rhs: (T) ->()) -> T {
 	rhs(lhs)
 	return lhs
+}
+public func =><T>(lhs: T, rhs: (T) ->()) -> T {
+	return apply(lhs, rhs)
 }
 
 /// # Usage
@@ -71,7 +74,7 @@ public func with<T>(_ lhs: T, _ rhs: (T) ->()) -> T {
 
 /// # Usage
 /**
-	class Person: Initiable {
+	class Person: CustomInitiable {
 		var name: String = ""
 		var age: UInt8 = 0
 		required init() {}
@@ -84,6 +87,13 @@ public func with<T>(_ lhs: T, _ rhs: (T) ->()) -> T {
 	print(daniel.name)
 */
 public func =><T: CustomInitiable>(lhs: T.Type, rhs: (T) ->()) -> T {
+	let initializedlhs = lhs.init()
+	rhs(initializedlhs)
+	return initializedlhs
+}
+
+@discardableResult
+public func with<T: CustomInitiable>(_ lhs: T.Type, _ rhs: (T) ->()) -> T {
 	let initializedlhs = lhs.init()
 	rhs(initializedlhs)
 	return initializedlhs

@@ -21,16 +21,7 @@ final class Foundation2Tests: XCTestCase {
     }
 	
 	func testThings() {
-		let number: Int? = nil
-		print(number..)
-		
-		print(10**2)
-		
-		let number2: Double = 10
-		print(number2 ** 2)
-		
-		let number3: Float = 10
-		print(Double(number3) ** 2)
+		print("Message: <placeholder>" ~~> ("<placeholder>" ==> "Hi!"))
 	}
 	
     static var allTests = [

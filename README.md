@@ -1,6 +1,6 @@
 # Foundation2
 
-[![Swift version](https://img.shields.io/badge/Swift-4-orange.svg)](https://kotlinlang.org/)[![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/illescasDaniel/Foundation2/blob/master/LICENSE)[![Version](https://img.shields.io/badge/version-1.4.1-green.svg)](https://github.com/illescasDaniel/Foundation2/releases)
+[![Swift version](https://img.shields.io/badge/Swift-4-orange.svg)](https://kotlinlang.org/)[![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/illescasDaniel/Foundation2/blob/master/LICENSE)[![Version](https://img.shields.io/badge/version-1.5.0-green.svg)](https://github.com/illescasDaniel/Foundation2/releases)
 
 A great collection of extensions, protocols and classes that improves Swift and extend the Foundation module 😉.
 
@@ -48,10 +48,17 @@ A great collection of extensions, protocols and classes that improves Swift and 
     print(value..) // value = 0
     ```
 
+  - **String replacement ternary operator**: `~~> ( ==> )`.
+
+    ```swift
+    // Result: "Message: Hi!"
+    print("Message: <placeholder>" ~~> ("<placeholder>" ==> "Hi!"))
+    ```
+
 - **Protocols**:
 
   - **AutoProtocols**: `AutoEquatable`, `AutoCustomDebugStringConvertible`,`AutoCustomStringConvertible`, `AutoComparable`. 
-  
+
   - **Initiable**: `protocol Initiable { init() }`. Making a type conform to this protocol allows it to create an instance in generic functions where `<T: Initiable>`.
 
   - **Arithmetic protocols**: that allows you to perform some extra operations with generic types (useful when using `Numeric` types).  `ModulusArithmetic`. 
@@ -138,7 +145,7 @@ A great collection of extensions, protocols and classes that improves Swift and 
   let package = Package(
       name: "Sample",
       dependencies: [
-          .package(url: "https://github.com/illescasDaniel/Foundation2.git", from: "1.4.1"),
+          .package(url: "https://github.com/illescasDaniel/Foundation2.git", from: "1.5.0"),
       ],
       targets: [
           .target(

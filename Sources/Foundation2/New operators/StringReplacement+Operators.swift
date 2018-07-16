@@ -24,16 +24,35 @@ SOFTWARE.
 
 import Foundation
 
-precedencegroup PowerPrecedence { higherThan: MultiplicationPrecedence }
-infix operator ** : PowerPrecedence
-infix operator **| : PowerPrecedence
+infix operator ~~> : TernaryPrecedence
+infix operator ~~|> : TernaryPrecedence
 
-/// **Example:** `let number = 5 ** 5` // 25
-public func **(lhs: Double, rhs: Double) -> Double {
-	return pow(lhs, rhs)
+/// # Example
+/// ```
+/// // Result: Are you FINE?
+///	"Are you OK?" ~~> ("OK" ==> "FINE")
+/// ```
+public func ~~> (original: String, other: (target: String, replacement: String)) -> String {
+	return original.replacingOccurrences(of: other.target, with: other.replacement)
 }
 
-public func **|(lhs: inout Double, rhs: Double) -> Double {
-	lhs = pow(lhs, rhs)
-	return lhs
+/// # Example
+/// ```
+/// // Result: Are you FINE?
+///	var youOK = "Are you OK?"
+/// youOK ~~> ("OK" ==> "FINE")
+/// // YouOK is now "Are you FINE?"
+/// ```
+public func ~~|> (original: inout String, other: (target: String, replacement: String)) -> String {
+	original = original.replacingOccurrences(of: other.target, with: other.replacement)
+	return original
 }
+
+infix operator ==> : TernaryPrecedence
+
+public func ==> (target: String, replacement: String) -> (target: String, replacement: String) {
+	return (target, replacement)
+}
+
+
+
