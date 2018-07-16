@@ -27,6 +27,7 @@ import Foundation
 /// Should only be used with your own custom classes
 public protocol CustomInitiable { init() }
 
+/// The basic types are extended to implement this protocol. Don't extend your custom classes with it, it may cause some imcompatibilities.
 public protocol Initiable { init() }
 
 extension Decimal: Initiable { }

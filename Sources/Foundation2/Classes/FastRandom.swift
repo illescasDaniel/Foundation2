@@ -67,7 +67,7 @@ public final class FastRandom<T: Numeric> {
 	private var internalCount = 0
 	
 	/// Size should be 100 at least (else just don't use FastRandom)
-	init(bufferSize: Int = 100_000) {
+	public init(bufferSize: Int = 100_000) {
 		self.bufferSize = (bufferSize > 2) ? bufferSize : 100
 	}
 	
@@ -94,19 +94,19 @@ public final class FastRandom<T: Numeric> {
 
 public extension FastRandom where FastRandom.Element == Int {
 	/// A FastRandom object of integers
-	static let integers = FastRandom<Int>()
+	public static let integers = FastRandom<Int>()
 	/// A FastRandom object of integers with buffer size of 5.000.000
-	static let lotsOfIntegers = FastRandom<Int>(bufferSize: 5_000_000)
+	public static let lotsOfIntegers = FastRandom<Int>(bufferSize: 5_000_000)
 }
 public extension FastRandom where FastRandom.Element == Byte {
 	/// A FastRandom object of bytes
-	static let bytes = FastRandom<Byte>()
+	public static let bytes = FastRandom<Byte>()
 	/// A FastRandom object of bytes with buffer size of 50.000.000
-	static let lotsOfBytes = FastRandom<Byte>(bufferSize: 50_000_000)
+	public static let lotsOfBytes = FastRandom<Byte>(bufferSize: 50_000_000)
 }
 
 /// An easy way of getting 'true' random numbers and big arrays.
-struct TrueRandom {
+public struct TrueRandom {
 	
 	public static func arrayOf(nBytes numberOfBytes: Int) -> [Byte] {
 		var randomBytes = [Byte](repeating: 0, count: numberOfBytes)

@@ -52,7 +52,7 @@ public extension CaseIterableEnum {
 	}
 }
 extension CaseIterableEnum where Self: RawRepresentable, Self.RawValue: Hashable {
-	static var all: Set<RawValue> {
+	public static var all: Set<RawValue> {
 		return Set<RawValue>(self.allCases.map({ $0.rawValue }))
 	}
 }

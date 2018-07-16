@@ -64,7 +64,7 @@ public final class CachedImages {
 	
 	private let cachedImagesFolder = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].appendingPathComponent(".cachesImages")
 	
-	static let shared = CachedImages()
+	public static let shared = CachedImages()
 	fileprivate init() { self.createImagesFolderIfItDoesntExist() }
 	
 	public func exists(withURL url: String) -> Bool {
@@ -148,7 +148,8 @@ public final class CachedImages {
 	}
 	
 	/// Returns `true` if cached images were cleared successfully
-	@discardableResult public func clear() -> Bool {
+	@discardableResult
+	public func clear() -> Bool {
 		let result = (try? FileManager.default.removeItem(atPath: self.cachedImagesFolder.path)) != nil
 		self.createImagesFolderIfItDoesntExist()
 		return result

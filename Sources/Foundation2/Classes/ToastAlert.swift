@@ -56,9 +56,9 @@ import UIKit
 public struct ToastAlert {
 	
 	public struct Length {
-		let timeInterval: DispatchTimeInterval
-		static let short = Length(timeInterval: .milliseconds(250))
-		static let long = Length(timeInterval: .milliseconds(500))
+		public let timeInterval: DispatchTimeInterval
+		public static let short = Length(timeInterval: .milliseconds(250))
+		public static let long = Length(timeInterval: .milliseconds(500))
 	}
 	
 	private let alertController: UIAlertController

@@ -27,7 +27,8 @@ import Foundation
 /// Manage files easier with this struct
 public struct File {
 	
-	@discardableResult public static func save(_ content: String, to path: URL?) -> Bool {
+	@discardableResult
+	public static func save(_ content: String, to path: URL?) -> Bool {
 		do {
 			if let validURL = path {
 				try content.write(to: validURL, atomically: true, encoding: .utf8)
@@ -41,7 +42,8 @@ public struct File {
 		return true
 	}
 	
-	@discardableResult public  static func append(_ newContent: String, to path: URL?) -> Bool {
+	@discardableResult
+	public static func append(_ newContent: String, to path: URL?) -> Bool {
 		let previousContent = File.read(from: path) ?? ""
 		return File.save(previousContent + newContent, to: path)
 	}
@@ -63,7 +65,8 @@ public struct File {
 		return content
 	}
 	
-	@discardableResult public static func copy(file filePath: URL?, to outputFilePath: URL?) -> Bool {
+	@discardableResult
+	public static func copy(file filePath: URL?, to outputFilePath: URL?) -> Bool {
 		guard let filePath = filePath, let outputFilePath = outputFilePath else { return false }
 		do {
 			try FileManager.default.copyItem(at: filePath, to: outputFilePath)
@@ -73,7 +76,8 @@ public struct File {
 		return true
 	}
 	
-	@discardableResult public  static func remove(file: String, from directory: String) -> Bool {
+	@discardableResult
+	public static func remove(file: String, from directory: String) -> Bool {
 		do {
 			try FileManager.default.removeItem(atPath: "\(directory)/\(file)")
 		} catch {

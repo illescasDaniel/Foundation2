@@ -26,7 +26,7 @@ SOFTWARE.
 import UIKit
 
 public extension DispatchTime {
-	static func +=(lhs: inout DispatchTime, interval: DispatchTimeInterval) {
+	public static func +=(lhs: inout DispatchTime, interval: DispatchTimeInterval) {
 		lhs = lhs + interval
 	}
 }

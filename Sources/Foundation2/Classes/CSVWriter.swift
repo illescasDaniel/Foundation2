@@ -77,7 +77,7 @@ public final class CSVWriter {
 		return self.addRow(columnValues, withTitle: title)
 	}
 	
-	@discardableResult public  func addRow(_ columnValues: [Any], withTitle title: String = "") -> CSVWriter {
+	@discardableResult public func addRow(_ columnValues: [Any], withTitle title: String = "") -> CSVWriter {
 		
 		let stringColumnValues: [String] = columnValues.map { value in
 			if let numberFormatter = numberFormatter, let number = value as? NSNumber, let validString = numberFormatter.string(from: number) {

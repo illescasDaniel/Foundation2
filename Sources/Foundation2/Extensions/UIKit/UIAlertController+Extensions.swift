@@ -41,7 +41,8 @@ public extension UIAlertController {
 	- Returns: A new alert action object.
 	- SDKs:	iOS 8.0+, tvOS 9.0+
 	*/
-	@discardableResult public func addAction(title: String, style: UIAlertActionStyle, handler: ((UIAlertAction) -> Void)? = nil) -> UIAlertController {
+	@discardableResult
+	public func addAction(title: String, style: UIAlertActionStyle, handler: ((UIAlertAction) -> Void)? = nil) -> UIAlertController {
 		let alertAction = UIAlertAction(title: title, style: style, handler: handler)
 		self.addAction(alertAction)
 		return self

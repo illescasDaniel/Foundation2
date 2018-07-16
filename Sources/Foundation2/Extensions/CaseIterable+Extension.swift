@@ -25,8 +25,8 @@ SOFTWARE.
 #if swift(>=4.2)
 import Foundation
 
-extension CaseIterable where Self.AllCases.Element: RawRepresentable, Self.RawValue: Hashable {
-	static var all: Set<RawValue> {
+public extension CaseIterable where Self.AllCases.Element: RawRepresentable, Self.RawValue: Hashable {
+	public static var all: Set<RawValue> {
 		return Set<RawValue>(self.allCases.map({ $0.rawValue }))
 	}
 }

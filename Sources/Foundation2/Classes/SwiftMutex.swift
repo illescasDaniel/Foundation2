@@ -26,7 +26,7 @@ import Foundation
 
 public final class PthreadMutex {
 	
-	public var unsafeMutex = pthread_mutex_t()
+	private var unsafeMutex = pthread_mutex_t()
 	
 	public enum `Type` {
 		case normal

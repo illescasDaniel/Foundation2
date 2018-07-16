@@ -81,20 +81,6 @@ public extension UIColor {
 		return self.adjust(by: -1 * abs(percentage) )
 	}
 	
-	/// Adjusts a color by making it lighter (positive value) or darker (negative)
-	internal func adjust(by percentage: CGFloat = 30.0) -> UIColor {
-		
-		var r: CGFloat = 0, g: CGFloat = 0, b: CGFloat = 0, a: CGFloat = 0
-		
-		if self.getRed(&r, green: &g, blue: &b, alpha: &a) {
-			return UIColor(red: min(r + percentage/100, 1.0),
-						   green: min(g + percentage/100, 1.0),
-						   blue: min(b + percentage/100, 1.0),
-						   alpha: a)
-		}
-		return self
-	}
-	
 	public var isLight: Bool {
 		var white: CGFloat = 0
 		self.getWhite(&white, alpha: nil)
@@ -112,6 +98,24 @@ public extension UIColor {
 			return UIColor(white: grayscale, alpha: alpha)
 		}
 		return nil
+	}
+}
+
+
+// Convenience
+private extension UIColor {
+	/// Adjusts a color by making it lighter (positive value) or darker (negative)
+	private func adjust(by percentage: CGFloat = 30.0) -> UIColor {
+		
+		var r: CGFloat = 0, g: CGFloat = 0, b: CGFloat = 0, a: CGFloat = 0
+		
+		if self.getRed(&r, green: &g, blue: &b, alpha: &a) {
+			return UIColor(red: min(r + percentage/100, 1.0),
+						   green: min(g + percentage/100, 1.0),
+						   blue: min(b + percentage/100, 1.0),
+						   alpha: a)
+		}
+		return self
 	}
 }
 

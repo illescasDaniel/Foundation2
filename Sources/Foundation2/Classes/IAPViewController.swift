@@ -27,9 +27,9 @@ SOFTWARE.
 import StoreKit
 
 #if swift(>=4.2)
-protocol ItemIDProtocol: RawStringRepresentable, CaseIterable { }
+public protocol ItemIDProtocol: RawStringRepresentable, CaseIterable { }
 #else
-protocol ItemIDProtocol: RawStringRepresentable, CaseIterableEnum { }
+public protocol ItemIDProtocol: RawStringRepresentable, CaseIterableEnum { }
 #endif
 
 /// A class to inherit from which lets you easily control your purchases.
@@ -74,7 +74,8 @@ open class IAPViewController: UIViewController, SKProductsRequestDelegate, SKPay
 
 	private var iapProducts: [SKProduct] = []
 	
-	@discardableResult func purchase<ItemType: ItemIDProtocol>(item: ItemType) -> Bool {
+	@discardableResult
+	open func purchase<ItemType: ItemIDProtocol>(item: ItemType) -> Bool {
 		
 		let product = self.iapProducts.first {
 			$0.productIdentifier == item.rawValue
@@ -87,7 +88,7 @@ open class IAPViewController: UIViewController, SKProductsRequestDelegate, SKPay
 		return false
 	}
 	
-	public func fetchAvailable(products: Set<String>)  {
+	open func fetchAvailable(products: Set<String>)  {
 		let productsRequest = SKProductsRequest(productIdentifiers: products)
 		productsRequest.delegate = self
 		productsRequest.start()
@@ -95,11 +96,11 @@ open class IAPViewController: UIViewController, SKProductsRequestDelegate, SKPay
 	
 	// MARK: SKProductsRequestDelegate
 	
-	public func productsRequest(_ request: SKProductsRequest, didReceive response: SKProductsResponse) {
+	open func productsRequest(_ request: SKProductsRequest, didReceive response: SKProductsResponse) {
 		self.iapProducts = response.products
 	}
 	
-	public func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
+	open func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
 		
 		for transaction in transactions {
 			

@@ -24,9 +24,9 @@ SOFTWARE.
 
 import Foundation
 
-extension RawRepresentable where RawValue == String {
+public extension RawRepresentable where RawValue == String {
 	/// The corresponding localized value of the raw type.
-	var rawLocalized: String {
+	public var rawLocalized: String {
 		return self.rawValue.localized
 	}
 }

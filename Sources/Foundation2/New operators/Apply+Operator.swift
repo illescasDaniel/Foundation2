@@ -83,7 +83,7 @@ public func with<T>(_ lhs: T, _ rhs: (T) ->()) -> T {
 	}
 	print(daniel.name)
 */
-public func =><T: Initiable>(lhs: T.Type, rhs: (T) ->()) -> T {
+public func =><T: CustomInitiable>(lhs: T.Type, rhs: (T) ->()) -> T {
 	let initializedlhs = lhs.init()
 	rhs(initializedlhs)
 	return initializedlhs
