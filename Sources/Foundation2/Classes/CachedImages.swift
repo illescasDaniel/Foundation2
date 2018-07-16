@@ -56,6 +56,42 @@ import UIKit
 */
 public final class CachedImages {
 	
+	public final class Load {
+		
+		private let stringURL: String
+		private var placeholderImage: UIImage? = nil
+		
+		public init(url: String) {
+			self.stringURL = url
+		}
+		
+		public func placeholder(image: UIImage) -> Load {
+			placeholderImage = image
+			return self
+		}
+		
+		public func into(imageView: UIImageView) {
+			DispatchQueue.main.async {
+				if let placeholderImage = self.placeholderImage {
+					imageView.image = placeholderImage
+				}
+			}
+			CachedImages.shared.load(url: stringURL, onSuccess: { image in
+				imageView.image = image
+			})
+		}
+		public func into(buttonImage: UIButton) {
+			DispatchQueue.main.async {
+				if let placeholderImage = self.placeholderImage {
+					buttonImage.setImage(placeholderImage, for: .normal)
+				}
+			}
+			CachedImages.shared.load(url: stringURL, onSuccess: { image in
+				buttonImage.setImage(image, for: .normal)
+			})
+		}
+	}
+	
 	public enum Errors: Error {
 		case emptyURL
 		case couldNotSaveImage
@@ -66,6 +102,18 @@ public final class CachedImages {
 	
 	public static let shared = CachedImages()
 	fileprivate init() { self.createImagesFolderIfItDoesntExist() }
+	
+	public func load(image imageURL: String, into imageView: UIImageView, placeholder: UIImage? = nil) {
+		let loadCachedImage = Load(url: imageURL)
+		if let placeholderImage = placeholder {
+			let _ = loadCachedImage.placeholder(image: placeholderImage)
+		}
+		loadCachedImage.into(imageView: imageView)
+	}
+	
+	public func load(image imageURL: String) -> Load {
+		return Load(url: imageURL)
+	}
 	
 	public func exists(withURL url: String) -> Bool {
 		return self.exists(withKey: url.hash)
@@ -101,12 +149,6 @@ public final class CachedImages {
 				onError(.couldNotDownloadImage)
 			})
 		}
-	}
-	
-	public func load(image imageURL: String, into imageView: UIImageView) {
-		self.load(url: imageURL, onSuccess: { image in
-			imageView.image = image
-		})
 	}
 	
 	public func load(url: String, onSuccess: @escaping (UIImage) -> (), prepareForDownload: @escaping () -> () = {}, onError: @escaping (CachedImages.Errors) -> () = {_ in }) {
