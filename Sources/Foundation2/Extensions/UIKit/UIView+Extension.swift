@@ -24,7 +24,7 @@ SOFTWARE.
 
 #if canImport(UIKit)
 #if !os(watchOS)
-import UIKit.UIView
+import class UIKit.UIView
 
 public extension UIView {
 	public func mapEverySubview(block: (UIView) -> Void) {

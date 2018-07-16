@@ -24,7 +24,12 @@ SOFTWARE.
 
 #if canImport(UIKit)
 #if !os(watchOS)
-import UIKit.UIDevice
+import class UIKit.UIDevice
+import class UIKit.UIApplication
+import struct Darwin.POSIX.sys.utsname
+import func Darwin.POSIX.sys.utsname.uname
+import var Darwin.POSIX.sys.utsname._SYS_NAMELEN
+import struct Foundation.Data
 
 public extension UIDevice {
 	

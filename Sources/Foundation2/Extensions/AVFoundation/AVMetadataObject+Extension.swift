@@ -23,7 +23,7 @@ SOFTWARE.
 */
 
 #if os(iOS)
-import AVFoundation.AVMetadataObject
+import class AVFoundation.AVMetadataObject
 
 public extension AVMetadataObject.ObjectType {
 	

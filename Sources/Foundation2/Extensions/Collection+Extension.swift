@@ -22,7 +22,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-public extension Swift.Collection {
+public extension Collection {
 	/// A custom subscript operator to safely get an element.
 	///
 	/// # Usage
@@ -38,7 +38,7 @@ public extension Swift.Collection {
 	}
 }
 
-public extension Swift.Collection where Element: Numeric {
+public extension Collection where Element: Numeric {
 	/// [1,2,3] => 6
 	public var sum: Element {
 		return self.reduce(0, +)

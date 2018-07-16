@@ -24,7 +24,10 @@ SOFTWARE.
 
 #if canImport(UIKit)
 #if !os(watchOS)
-import UIKit.UIAlertController
+import class UIKit.UIAlertController
+import enum UIKit.UIAlertActionStyle
+import class UIKit.UIAlertAction
+import class UIKit.UIViewController
 
 public extension UIAlertController {
 	/// Quickly adds an action to your `UIAlertController`

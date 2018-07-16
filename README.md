@@ -1,6 +1,6 @@
 # Foundation2
 
-[![Swift version](https://img.shields.io/badge/Swift-4-orange.svg)](https://kotlinlang.org/)[![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/illescasDaniel/Foundation2/blob/master/LICENSE)[![Version](https://img.shields.io/badge/version-1.5.0-green.svg)](https://github.com/illescasDaniel/Foundation2/releases)
+[![Swift version](https://img.shields.io/badge/Swift-4-orange.svg)](https://kotlinlang.org/)[![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/illescasDaniel/Foundation2/blob/master/LICENSE)[![Version](https://img.shields.io/badge/version-1.5.1-green.svg)](https://github.com/illescasDaniel/Foundation2/releases)
 
 A great collection of extensions, protocols and classes that improves Swift and extend the Foundation module 😉.
 
@@ -159,7 +159,7 @@ A great collection of extensions, protocols and classes that improves Swift and 
 
   * Save your currect project as a workspace (on the same directory of your project). Close your project window.
   * Clone this github repo `git clone https://github.com/illescasDaniel/Foundation2.git`.
-  * Go to the `Foundation2`folder, delete the Sample folder and run `swift package generate-xcodeproj`to generate an xcode project.
+  * Go to the `Foundation2` folder, delete the Sample folder and run `swift package generate-xcodeproj`to generate an xcode project.
   * Open your workspace and drag the generated  `Foundation2.xcodeproj` project to the same level as yours in Xcode.
   * In your project go to `Linked Frameworks and Libraries` and add `Foundation2.framework`.
   * In your workspace: Foundation2 project > Build Settings > Base SDK > Choose latest iOS or latest macOS.

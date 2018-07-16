@@ -22,7 +22,20 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-import Foundation
+import class Dispatch.DispatchQueue
+import class Dispatch.DispatchSemaphore
+import class Foundation.NSLock
+import typealias Darwin.sys._pthread.pthread_mutex_t
+import typealias Darwin.sys._pthread.pthread_mutexattr_t
+import func Darwin.sys._pthread.pthread_mutexattr_init
+import func Darwin.sys._pthread.pthread_mutex_init
+import func Darwin.sys._pthread.pthread_mutexattr_settype
+import func Darwin.sys._pthread.pthread_mutexattr_destroy
+import func Darwin.sys._pthread.pthread_mutex_destroy
+import var Darwin.sys._pthread.PTHREAD_MUTEX_NORMAL
+import var Darwin.sys._pthread.PTHREAD_MUTEX_RECURSIVE
+import func Darwin.sys._pthread.pthread_mutex_trylock
+import func Darwin.sys._pthread.pthread_mutex_unlock
 
 public final class PthreadMutex {
 	

@@ -24,7 +24,17 @@ SOFTWARE.
 
 #if canImport(UIKit)
 #if !os(watchOS)
-import StoreKit
+
+import class StoreKit.SKProduct
+import class StoreKit.SKPayment
+import class StoreKit.SKPaymentQueue
+import class StoreKit.SKProductsRequest
+import class StoreKit.SKPaymentTransaction
+import class StoreKit.SKProductsRequest.SKProductsResponse
+import protocol StoreKit.SKProductsRequest.SKProductsRequestDelegate
+import protocol StoreKit.SKPaymentQueue.SKPaymentTransactionObserver
+import class UIKit.UIViewController
+import class UIKit.UIAlertController
 
 #if swift(>=4.2)
 public protocol ItemIDProtocol: RawStringRepresentable, CaseIterable { }

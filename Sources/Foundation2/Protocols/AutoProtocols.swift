@@ -22,7 +22,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-import Foundation
+import class Foundation.NSNumberFormatter.NumberFormatter
 
 /// Compares all properties of the object, including the properties of the objects of the properties too (making a deep search).
 ///

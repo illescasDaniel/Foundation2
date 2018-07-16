@@ -22,10 +22,13 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-import Foundation
+import func Security.SecRandom.SecRandomCopyBytes
+import var Security.SecRandom.kSecRandomDefault
+import var Security.SecRandom.errSecSuccess
+import struct Foundation.Data
 
 #if !os(watchOS)
-import GameplayKit.GKRandomSource
+import class GameplayKit.GKRandomSource.GKARC4RandomSource
 #endif
 
 /// A class to manage big chunks of random numbers in an easy and very fast way.

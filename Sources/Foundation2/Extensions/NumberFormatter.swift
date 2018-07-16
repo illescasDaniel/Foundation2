@@ -21,7 +21,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
-import Foundation
+import class Foundation.NSNumberFormatter.NumberFormatter
 
 public extension NumberFormatter {
 	public convenience init(decimalSeparator: String, numberStyle: NumberFormatter.Style) {

@@ -23,7 +23,28 @@ SOFTWARE.
 */
 #if canImport(UIKit)
 #if !os(watchOS)
-import UIKit.UIImage
+
+import var CoreImage.CIImage.kCIFormatRGBA8
+import var CoreImage.CIImage.kCIInputImageKey
+import var CoreImage.CIImage.kCIInputExtentKey
+import class CoreImage.CIImage
+import class CoreImage.CIContext
+import class CoreImage.CIVector
+import class CoreImage.CIFilter
+import class UIKit.UIColor
+import class UIKit.UIGraphicsImageRendererFormat
+import class UIKit.UIGraphicsImageRenderer
+import func UIKit.UIGraphicsBeginImageContext
+import func UIKit.UIGraphicsGetImageFromCurrentImageContext
+import func UIKit.UIGraphicsEndImageContext
+import class UIKit.UIImage
+import struct Foundation.Data
+import struct Foundation.URL
+import struct CoreGraphics.CGGeometry.CGSize
+import struct CoreGraphics.CGGeometry.CGRect
+import struct CoreGraphics.CGFloat
+import func CoreGraphics.CGColorSpace.CGColorSpaceCreateDeviceRGB
+import class Dispatch.DispatchQueue
 
 public extension UIImage {
 	

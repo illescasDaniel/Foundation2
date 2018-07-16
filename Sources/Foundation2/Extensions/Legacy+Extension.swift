@@ -24,11 +24,11 @@ SOFTWARE.
 
 #if !swift(>=4.2)
 
-import Foundation
-
 #if !os(watchOS)
-import GameplayKit.GKRandomSource // .shuffled
+import class GameplayKit.GKRandomSource.NSArray // .shuffled
 #endif
+
+import func Darwin.C.stdlib.arc4random_uniform
 
 public protocol CaseIterableEnum: Hashable {
 	static var allCases: [Self] { get }

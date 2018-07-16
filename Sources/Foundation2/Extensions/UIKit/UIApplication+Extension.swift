@@ -24,7 +24,11 @@ SOFTWARE.
 
 #if canImport(UIKit)
 #if !os(watchOS)
-import UIKit
+
+import class UIKit.UIApplication
+import var UIKit.UIApplication.UIApplicationOpenSettingsURLString
+import struct Foundation.URL
+import class Foundation.NSBundle.Bundle
 
 public extension UIApplication {
 	

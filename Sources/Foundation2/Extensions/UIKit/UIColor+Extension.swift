@@ -24,7 +24,8 @@ SOFTWARE.
 
 #if canImport(UIKit)
 
-import UIKit.UIColor
+import class UIKit.UIColor
+import struct CoreGraphics.CGFloat
 
 public extension UIColor {
 	

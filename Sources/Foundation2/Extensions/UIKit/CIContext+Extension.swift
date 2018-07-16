@@ -23,7 +23,9 @@ SOFTWARE.
 */
 
 #if os(iOS)
-import CoreImage
+import class CoreImage.CIContext
+import class OpenGLES.EAGL.EAGLContext
+import func Metal.MTLDevice.MTLCreateSystemDefaultDevice
 
 public extension CIContext {
 	

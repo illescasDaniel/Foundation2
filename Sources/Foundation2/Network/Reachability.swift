@@ -23,8 +23,14 @@ SOFTWARE.
 */
 
 #if !os(watchOS)
-import Foundation
-import SystemConfiguration
+import class SystemConfiguration.SCNetworkReachability
+import func SystemConfiguration.SCNetworkReachabilityCreateWithAddress
+import struct SystemConfiguration.SCNetworkReachabilityFlags
+import func SystemConfiguration.SCNetworkReachabilityGetFlags
+import struct Darwin.POSIX.netinet.`in`.sockaddr_in
+import struct Darwin.POSIX.sys.socket.sockaddr
+import struct Darwin.POSIX.sys.types.sa_family_t
+import var Darwin.POSIX.sys.socket.AF_INET
 
 /// Easily know if the device is connnected to a network or not.
 ///

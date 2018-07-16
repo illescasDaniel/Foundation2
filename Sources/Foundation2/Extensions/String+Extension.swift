@@ -22,7 +22,9 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-import Foundation.NSString
+import class Foundation.NSString
+import func Foundation.NSLocalizedString
+import struct Foundation.NSCharacterSet.CharacterSet
 
 public extension String {
 	/// Accesses the element at the specified position.

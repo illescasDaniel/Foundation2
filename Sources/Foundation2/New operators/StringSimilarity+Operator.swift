@@ -22,8 +22,6 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-import Foundation
-
 infix operator =~ : ComparisonPrecedence
 
 /// Indicates if two strings are very similar to each other

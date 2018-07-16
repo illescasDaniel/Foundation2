@@ -22,7 +22,11 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-import Foundation
+import class Foundation.NSUserDefaults.UserDefaults
+import class Foundation.JSONEncoder
+import class Foundation.JSONDecoder
+import struct Foundation.URL
+import struct Foundation.Data
 
 public protocol PropertiesPreferences: RawStringRepresentable {
 	/// Provies a defaultValue for each preference

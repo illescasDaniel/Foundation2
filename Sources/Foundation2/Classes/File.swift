@@ -22,7 +22,8 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-import Foundation
+import class Foundation.NSFileManager.FileManager
+import struct Foundation.URL
 
 /// Manage files easier with this struct
 public struct File {

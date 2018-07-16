@@ -22,8 +22,6 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-import Foundation
-
 public extension RawRepresentable where RawValue == String {
 	/// The corresponding localized value of the raw type.
 	public var rawLocalized: String {

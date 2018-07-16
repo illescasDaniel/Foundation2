@@ -22,7 +22,9 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-import Foundation
+import class Foundation.NSNumberFormatter.NumberFormatter
+import struct Foundation.URL
+import class Foundation.NSValue.NSNumber
 
 /// A CSV writer made in Swift.
 ///

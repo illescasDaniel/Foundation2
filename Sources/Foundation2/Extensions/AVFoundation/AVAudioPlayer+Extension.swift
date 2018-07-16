@@ -22,7 +22,10 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-import AVFoundation
+import class AVFoundation.AVFAudio.AVAudioPlayer
+import class Foundation.NSBundle.Bundle
+import struct Foundation.URL
+import struct Foundation.TimeInterval
 
 public extension AVAudioPlayer {
 	

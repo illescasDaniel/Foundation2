@@ -23,7 +23,18 @@ SOFTWARE.
 */
 
 #if canImport(UIKit)
-import UIKit
+
+import class UIKit.UIImpactFeedbackGenerator
+import class UIKit.UINotificationFeedbackGenerator
+import class UIKit.UISelectionFeedbackGenerator
+import enum UIKit.UIImpactFeedbackStyle
+import enum UIKit.UINotificationFeedbackType
+/*import class Dispatch.DispatchQueue
+import struct Dispatch.DispatchTime
+import enum Dispatch.DispatchTimeInterval
+// cannot import + function :/, need to import Dispatch
+*/
+import Dispatch
 
 public extension DispatchTime {
 	public static func +=(lhs: inout DispatchTime, interval: DispatchTimeInterval) {

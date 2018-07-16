@@ -22,7 +22,8 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-import Foundation
+import struct Foundation.NSDecimal.Decimal
+import class ObjectiveC.NSObject
 
 /// Should only be used with your own custom classes
 public protocol CustomInitiable { init() }

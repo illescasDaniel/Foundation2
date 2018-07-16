@@ -24,7 +24,15 @@ SOFTWARE.
 
 #if canImport(UIKit)
 #if !os(watchOS)
-import UIKit
+
+import class UIKit.UIImage
+import class UIKit.UIImageView
+import class UIKit.UIButton
+import func UIKit.UIImage.UIImageJPEGRepresentation
+import class Foundation.NSFileManager.FileManager
+import class Dispatch.DispatchQueue
+import struct Foundation.URL
+import struct Foundation.Data
 
 /// An easy class to manage online images in Swift.
 ///

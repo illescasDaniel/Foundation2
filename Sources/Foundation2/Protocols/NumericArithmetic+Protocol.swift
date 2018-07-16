@@ -22,8 +22,6 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-import Foundation
-
 public protocol ModulusArithmetic {
 	static func %(lhs: Self, rhs: Self) -> Self
 	static func %=(lhs: inout Self, rhs: Self)

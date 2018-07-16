@@ -22,7 +22,5 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-import Foundation
-
 public typealias Byte = UInt8
 public protocol RawStringRepresentable: RawRepresentable where RawValue == String { }

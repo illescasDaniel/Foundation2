@@ -22,8 +22,6 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-import Foundation
-
 public extension Mirror {
 	
 	public static func deepChildren(of originalValue: Any) -> [String: Any] {

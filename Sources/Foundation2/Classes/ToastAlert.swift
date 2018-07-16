@@ -24,7 +24,14 @@ SOFTWARE.
 
 #if canImport(UIKit)
 #if !os(watchOS)
-import UIKit
+
+import class Dispatch.DispatchQueue
+import class UIKit.UIViewController
+import class UIKit.UINotificationFeedbackGenerator
+import class UIKit.UIAlertController
+import func Foundation.NSLocalizedString
+//import enum Dispatch.DispatchTimeInterval
+import Dispatch
 
 /// A basic toast-like alert, similar to what to find in Android.
 ///
