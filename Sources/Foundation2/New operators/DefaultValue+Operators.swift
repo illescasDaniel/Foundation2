@@ -30,7 +30,7 @@ postfix operator ..
 public postfix func .. <T: Numeric>(lhs: T?) -> T {
 	return lhs ?? 0
 }
-public postfix func .. <T: Initiable>(lhs: T?) -> T { // Might give some issue with types that conforms to Initiable or other but not sure
+public postfix func ..<T: CustomInitiable>(lhs: T?) -> T {
 	return lhs ?? T()
 }
 public postfix func .. (lhs: String?) -> String {
@@ -64,7 +64,7 @@ public postfix func ..| <T: Numeric>(lhs: inout T?) -> T {
 	return lhs..
 }
 @discardableResult
-public postfix func ..| <T: Initiable>(lhs: inout T?) -> T {
+public postfix func ..| <T: CustomInitiable>(lhs: inout T?) -> T {
 	if lhs == nil { lhs = T() }
 	return lhs..
 }

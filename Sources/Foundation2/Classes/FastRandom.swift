@@ -33,32 +33,32 @@ import GameplayKit.GKRandomSource
 /// # Usage
 ///
 /// ## Example 1:
-/** ```
-	FastRandom<Int8>(bufferSize: 5_000_000).useAndFree { random in
-		for _ in 0..<5 {
-			print(random.nextNumber)
-		}
-	}
-	```
-*/
+/// ```
+///	FastRandom<Int8>(bufferSize: 5_000_000).useAndFree { random in
+///		for _ in 0..<5 {
+///			print(random.nextNumber)
+///		}
+///	}
+///	```
+///
 /// ## Example 2:
-/** ```
-	FastRandom.standard.useAndFree { random in
-		for _ in 0..<5 {
-			print(random.nextNumber)
-		}
-	}
-	```
-*/
+/// ```
+///	FastRandom.integers.useAndFree { random in
+///		for _ in 0..<5 {
+///			print(random.nextNumber)
+///		}
+///	}
+///	```
+///
 /// ## Example 3:
-/** ```
-	let random1 = FastRandom.standard.nextElement
-	let random2 = FastRandom.standard.nextElement
-	...
-	FastRandom.standard.freeMemory() // Optional, use it when you stop using the generator
-	```
-*/
-public final class FastRandom<T: Initiable> {
+/// ```
+///	let random1 = FastRandom.integers.nextElement
+///	let random2 = FastRandom.integers.nextElement
+///	...
+/// // Optional, use it when you stop using the generator
+///	FastRandom.standard.freeMemory()
+///	```
+public final class FastRandom<T: Numeric> {
 	
 	public typealias Element = T
 	
@@ -112,8 +112,8 @@ struct TrueRandom {
 		return (SecRandomCopyBytes(kSecRandomDefault, numberOfBytes, &randomBytes) == errSecSuccess) ? randomBytes : []
 	}
 	
-	public static func arrayOf<T: Initiable>(nElements: Int) -> [T] {
-		var randomBytes = [T](repeating: T(), count: nElements)
+	public static func arrayOf<T: Numeric>(nElements: Int) -> [T] {
+		var randomBytes = [T](repeating: 0, count: nElements)
 		let bytesPerElement = MemoryLayout<T>.size
 		return (SecRandomCopyBytes(kSecRandomDefault, nElements * bytesPerElement, &randomBytes) == errSecSuccess) ? randomBytes : []
 	}

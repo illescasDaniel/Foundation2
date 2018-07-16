@@ -24,9 +24,12 @@ SOFTWARE.
 
 import Foundation
 
+/// Should only be used with your own custom classes
+public protocol CustomInitiable { init() }
+
 public protocol Initiable { init() }
 
-extension Decimal: Initiable {}
+extension Decimal: Initiable { }
 extension Int8   : Initiable { }
 extension Int16  : Initiable { }
 extension Int32  : Initiable { }

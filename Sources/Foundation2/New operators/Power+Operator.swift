@@ -24,7 +24,8 @@ SOFTWARE.
 
 import Foundation
 
-infix operator **: MultiplicationPrecedence
+precedencegroup PowerPrecedence { higherThan: MultiplicationPrecedence }
+infix operator **: PowerPrecedence
 
 /// **Example:** `let number = 5 ** 5` // 25
 public func **(lhs: Double, rhs: Double) -> Double {
