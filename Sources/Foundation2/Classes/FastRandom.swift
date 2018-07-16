@@ -66,8 +66,9 @@ public final class FastRandom<T: Numeric> {
 	private let bufferSize: Int
 	private var internalCount = 0
 	
+	/// Size should be 100 at least (else just don't use FastRandom)
 	init(bufferSize: Int = 100_000) {
-		self.bufferSize = abs(bufferSize)
+		self.bufferSize = (bufferSize > 2) ? bufferSize : 100
 	}
 	
 	public var nextNumber: Element {
