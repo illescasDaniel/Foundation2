@@ -78,19 +78,17 @@ A great collection of extensions, protocols and classes that improves Swift and 
 
   - **String**: 
     - `subscript(index: Int)`, `var deletingPathExtension: String `, `var localized: String`.
-    - `clear()`, `isNumeric`, `levenshteinDistanceScoreTo(string:, ...)`
+    - `clear()`, `isNumeric`, `levenshteinDistanceScoreTo(string:, ...)`.
 
-  - **UIView**: `mapEverySubview(block:)`
+  - **UIView**: `mapEverySubview(block:)`.
 
-  - **AVAudioPlayer**: `convenience init?(file:, type:, volume:)`, `setVolumeLevel(to:, duration:)` 
+  - **AVAudioPlayer**: `convenience init?(file:, type:, volume:)`, `setVolumeLevel(to:, duration:)` .
 
   - **AVFoundation.AVMetadataObject**: `name`, `allBarcodes`, `twoDBarcodes`, `is1DBarcode`. 
 
   - **UIApplication**: `openURL(from url:, completionHandler:)`, `openSettings()`, `versionNumber`, `buildNumber`, `versionAndBuildNumber`. 
 
   - **UIDevice**: `modelName`, `hasNotchOrExtraInsets`.
-
-  - **Numeric protocols** and extensions, `Initiable`  (`init{}`) protocol, etc.
 
   - **BinaryInteger**: `isEven`, `isOdd`, `isPrime`.
 
@@ -102,7 +100,7 @@ A great collection of extensions, protocols and classes that improves Swift and 
 
   - **CIContext**: easy properties to use a metal context or a OpenGL context. 
 
-  - **Mirror**: `deepChildren(of originalValue: )`.
+  - **Mirror**: `deepChildren(of originalValue:)`.
 
   - **Extensions for Swift 4.1 or lower**: `shuffle()`, `shuffled`, `Array.hashValue`, `CaseIterableEnum`, `Collection.randomElement` .
     
@@ -141,7 +139,7 @@ A great collection of extensions, protocols and classes that improves Swift and 
 
   ```swift
   import PackageDescription
-
+  
   let package = Package(
       name: "Sample",
       dependencies: [
@@ -159,8 +157,10 @@ A great collection of extensions, protocols and classes that improves Swift and 
 
 - Normal project:
 
-  * Save your currect project as a workspace (on the same directory of your project).
-  * Close your project and open the workspace.
-  * Drag all the files of this repo (except for the Sample folder) to the same directory as your project workspace.
-  * Open your workspace and drag the `Foundation2.xcodeproj` project at the same level as yours in Xcode.
-  * Go to your `Linked Frameworks and Libraries` and add `Foundation2.framework
+  * Save your currect project as a workspace (on the same directory of your project). Close your project window.
+  * Clone this github repo `git clone https://github.com/illescasDaniel/Foundation2.git`.
+  * Go to the `Foundation2`folder, delete the Sample folder and run `swift package generate-xcodeproj`to generate an xcode project.
+  * Open your workspace and drag the generated  `Foundation2.xcodeproj` project to the same level as yours in Xcode.
+  * In your project go to `Linked Frameworks and Libraries` and add `Foundation2.framework`.
+  * In your workspace: Foundation2 project > Build Settings > Base SDK > Choose latest iOS or latest macOS.
+  * In the Info tab for iOS choose iOS Deployment Target: 8.0, for a macOS project choose 10.10.
