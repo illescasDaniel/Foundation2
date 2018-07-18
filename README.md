@@ -59,7 +59,7 @@ A great collection of extensions, protocols and classes that improves Swift and 
 
   - **AutoProtocols**: `AutoEquatable`, `AutoCustomDebugStringConvertible`,`AutoCustomStringConvertible`, `AutoComparable`. 
 
-  - **Initiable**: `protocol Initiable { init() }`. Making a type conform to this protocol allows it to create an instance in generic functions where `<T: Initiable>`.
+  - **Initiable**/CustomInitiable: `protocol Initiable { init() }`. Making a type conform to this protocol allows it to create an instance in generic functions where `<T: Initiable>`.
 
   - **Arithmetic protocols**: that allows you to perform some extra operations with generic types (useful when using `Numeric` types).  `ModulusArithmetic`. 
 
@@ -129,7 +129,7 @@ A great collection of extensions, protocols and classes that improves Swift and 
 
 
 
-## Instalation
+## Installation
 
 - **Swift package manager**:
 
