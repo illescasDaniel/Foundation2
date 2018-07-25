@@ -114,26 +114,16 @@ A great collection of extensions, protocols and classes that improves Swift and 
 - **Classes**:
 
   * [**CachedImages**](https://github.com/illescasDaniel/CachedImages): an easy class to manage online images in Swift. 
-
   * [**File**](https://github.com/illescasDaniel/Files-swift): manage files easier with this struct.
-
   * [**PreferencesManager**](https://github.com/illescasDaniel/PreferencesManagerSwift): a simple way to manage local values in your iOS apps. 
-
   * [**HapticFeedback**](https://github.com/illescasDaniel/HapticFeedbackPlayer): create simple haptic feedback patters easily. 
-
   * [**ToastAlert**](https://github.com/illescasDaniel/ToastAlert): a basic toast-like alert, similar to what to find in Android. 
-
   * **Reachability**: easily know if the device is connnected to a network or not. 
-
   * [**CSVWriter**](https://github.com/illescasDaniel/CSVWriter): a CSV writer made in Swift. 
-
   * **IAPViewController**: a viewController which lets you easily control your purchases. 
-
   * **TrueRandom**: very useful type which handles millions of random numbers. 
-
   * **SwiftMutex**: `PthreadMutex`, `Semaphore`, `NSLock.sync`. 
-
-
+  * **AutoLocalized**: automatically generates a class with the keys in your `Localizable.strings`. See the file for more info.
 
 ## Installation
 

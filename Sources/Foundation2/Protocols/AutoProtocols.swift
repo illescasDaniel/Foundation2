@@ -55,7 +55,7 @@ public extension AutoCustomDebugStringConvertible {
 			let childValue = Mirror(reflecting: $0.value).subjectType == String.self ? "\"\($0.value)\"" : $0.value
 			return "\($0.key.replacingOccurrences(of: className + ".", with: "")): \(childValue)"
 			}.joined(separator: ", ")
-		return String(describing: Self.self) + "(" + labelsAndValues + ")"
+		return className + "(" + labelsAndValues + ")"
 	}
 }
 
