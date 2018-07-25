@@ -25,6 +25,8 @@ SOFTWARE.
 import class Foundation.NSString
 import func Foundation.NSLocalizedString
 import struct Foundation.NSCharacterSet.CharacterSet
+import class Foundation.NSRegularExpression
+import struct Foundation.NSRange
 
 public extension String {
 	/// Accesses the element at the specified position.
@@ -59,11 +61,28 @@ public extension String {
 		return CharacterSet.decimalDigits.isSuperset(of: CharacterSet(charactersIn: self))
 	}
 	
-	/// Returns a number from 0.0 to 1.0 indicating the similarity to other string.
+	/// ```
+	/// "Look at the %@. It is %d ft tall.".formatted(args: "Empire State building", 1250)
+	/// // results in: Look at the Empire State building. It is 1250 ft tall.
+	/// ```
+	public func formatted(args arguments: CVarArg...) -> String {
+		return String(format: self, arguments: arguments)
+	}
+	
+	/// ```
+	/// let data = ["Empire State building", 1250]
+	/// "Look at the %@. It is %d ft tall.".formatted(args: data)
+	/// // results in: Look at the Empire State building. It is 1250 ft tall.
+	/// ```
+	public func formatted(args arguments: [CVarArg]) -> String {
+		return String(format: self, arguments: arguments)
+	}
+
+	/// Returns a value from 0.0 to 1.0 indicating the similarity to other string.
 	public func levenshteinDistanceScoreTo(string: String, ignoreCase: Bool = true, trimWhiteSpacesAndNewLines: Bool = true) -> Float {
 		
 		guard !self.isEmpty && !string.isEmpty else { return 0.0 }
-		guard self != string else { return 1.0 }
+		if self.count == string.count && self == string { return 1.0 }
 		
 		var firstString = self
 		var secondString = string
@@ -71,13 +90,13 @@ public extension String {
 		if ignoreCase {
 			firstString = firstString.lowercased()
 			secondString = secondString.lowercased()
-			guard firstString != secondString else { return 1.0 }
+			if firstString.count == secondString.count && firstString == secondString { return 1.0 }
 		}
 		if trimWhiteSpacesAndNewLines {
 			firstString = firstString.trimmingCharacters(in: .whitespacesAndNewlines)
 			secondString = secondString.trimmingCharacters(in: .whitespacesAndNewlines)
-			guard firstString != secondString else { return 1.0 }
 			guard !firstString.isEmpty && !secondString.isEmpty else { return 0.0 }
+			if firstString.count == secondString.count && firstString == secondString { return 1.0 }
 		}
 		
 		let empty = [Int](repeating:0, count: secondString.count)
@@ -100,4 +119,43 @@ public extension String {
 		
 		return 0.0
 	}
+	
+	// Regular expressions
+	
+	public func matchesEntire(regex: String) -> Bool {
+		let stringRange = self.startIndex..<self.endIndex
+		return self.range(of: regex, options: .regularExpression) == stringRange
+	}
+	
+	public func rangeOf(regex: String) -> Range<String.Index>? {
+		return self.range(of: regex, options: .regularExpression)
+	}
+	public func valueInrangeOf(regex: String) -> String {
+		guard let range = self.range(of: regex, options: .regularExpression) else { return self }
+		return String(self[range])
+	}
+	
+	public func matches(for regex: String) -> [String] {
+		do {
+			let regex = try NSRegularExpression(pattern: regex)
+			let results = regex.matches(in: self, range: NSRange(self.startIndex..., in: self))
+			let finalResult: [String] = results.compactMap {
+				if let range = Range($0.range, in: self) {
+					return String(self[range])
+				}
+				return nil
+			}
+			return finalResult
+		} catch let error {
+			print("invalid regex: \(error.localizedDescription)")
+			return []
+		}
+	}
+	
+	public func replacingFirstOcurrence(of target: String, with replaceString: String) -> String {
+		if let range = self.range(of: target) {
+			return self.replacingCharacters(in: range, with: replaceString)
+		}
+		return self
+	} 
 }

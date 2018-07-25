@@ -24,7 +24,10 @@ SOFTWARE.
 
 import func Darwin.C.math.pow
 
-precedencegroup PowerPrecedence { higherThan: MultiplicationPrecedence }
+precedencegroup PowerPrecedence {
+	higherThan: MultiplicationPrecedence
+	associativity: right
+}
 infix operator ** : PowerPrecedence
 infix operator **| : PowerPrecedence
 

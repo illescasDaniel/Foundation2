@@ -87,6 +87,17 @@ public struct File {
 		return true
 	}
 	
+	@discardableResult
+	public static func remove(at filePath: URL?) -> Bool {
+		guard let filePath = filePath else { return false }
+		do {
+			try FileManager.default.removeItem(at: filePath)
+		} catch {
+			return false
+		}
+		return true
+	}
+	
 	public static var documentsDirectory: URL? {
 		return FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
 	}

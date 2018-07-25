@@ -38,7 +38,7 @@ public func ~~> (original: String, other: (target: String, replacement: String))
 /// ```
 /// // Result: Are you FINE?
 ///	var youOK = "Are you OK?"
-/// youOK ~~> ("OK" ==> "FINE")
+/// youOK ~~|> ("OK" ==> "FINE")
 /// // YouOK is now "Are you FINE?"
 /// ```
 public func ~~|> (original: inout String, other: (target: String, replacement: String)) -> String {
@@ -52,5 +52,39 @@ public func ==> (target: String, replacement: String) -> (target: String, replac
 	return (target, replacement)
 }
 
+//
 
+infix operator %%
 
+/// Formats the string with the provided arguments
+/// Example: `"Take %d, Mr. %@" %% [40, "things"]`
+func %% (format: String, arguments: [CVarArg]) -> String {
+	return String(format: format, arguments: arguments)
+}
+
+/*
+
+//I just don't like this thing lol, but it works
+
+infix operator **-**
+
+public func **-**<T: ExpressibleByStringLiteral> (original: String, replacement: T) -> String {
+	return original.replacingOccurrences(of: "\\*\\*\\w+\\*\\*", with: "\(replacement)", options: .regularExpression)
+}
+
+public func **-**<T: ExpressibleByStringLiteral> (original: String, replacement: [T]) -> String {
+	
+	var replacedString = original
+	let matches = original.matches(for: "\\*\\*\\w+\\*\\*")
+	var replacementIterator = replacement.enumerated().makeIterator()
+	
+	guard matches.count == replacement.count else { return original }
+	
+	for match in matches {
+		if let nextReplacement = replacementIterator.next()?.element {
+			replacedString = replacedString.replacingFirstOcurrence(of: match, with: "\(nextReplacement)")
+		}
+	}
+	
+	return replacedString
+}*/

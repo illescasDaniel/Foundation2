@@ -24,6 +24,10 @@ final class Foundation2Tests: XCTestCase {
 		print("Message: <placeholder>" ~~> ("<placeholder>" ==> "Hi!"))
 	}
 	
+	func testMathematics() {
+		print(2 ** 4)
+	}
+	
     static var allTests = [
         ("testMeasureFastRandom", testMeasureFastRandom),
     ]

@@ -1,6 +1,6 @@
 # Foundation2
 
-[![Swift version](https://img.shields.io/badge/Swift-4-orange.svg)](https://kotlinlang.org/)[![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/illescasDaniel/Foundation2/blob/master/LICENSE)[![Version](https://img.shields.io/badge/version-1.5.1-green.svg)](https://github.com/illescasDaniel/Foundation2/releases)
+[![Swift version](https://img.shields.io/badge/Swift-4-orange.svg)](https://kotlinlang.org/)[![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/illescasDaniel/Foundation2/blob/master/LICENSE)[![Version](https://img.shields.io/badge/version-1.6.0-green.svg)](https://github.com/illescasDaniel/Foundation2/releases)
 
 A great collection of extensions, protocols and classes that improves Swift and extend the Foundation module 😉.
 
@@ -19,6 +19,13 @@ A great collection of extensions, protocols and classes that improves Swift and 
     ```swift
     // Will return true if the two strings are 85% similar or above.
     print("Daniel Illescas" =~ "Daniel ilescas")
+    ```
+
+  - **String format replacement operator**: `%%`.
+
+    ```swift
+    // Result: "Take 40, Mr. Daniel"
+    print("Take %d, Mr. %@" %% [40, "Daniel"])
     ```
 
   - **Apply operator**: `=>` 
@@ -56,7 +63,6 @@ A great collection of extensions, protocols and classes that improves Swift and 
     ```
 
 - **Protocols**:
-
   - **AutoProtocols**: `AutoEquatable`, `AutoCustomDebugStringConvertible`,`AutoCustomStringConvertible`, `AutoComparable`. 
 
   - **Initiable**/CustomInitiable: `protocol Initiable { init() }`. Making a type conform to this protocol allows it to create an instance in generic functions where `<T: Initiable>`.
@@ -143,7 +149,7 @@ A great collection of extensions, protocols and classes that improves Swift and 
   let package = Package(
       name: "Sample",
       dependencies: [
-          .package(url: "https://github.com/illescasDaniel/Foundation2.git", from: "1.5.0"),
+          .package(url: "https://github.com/illescasDaniel/Foundation2.git", from: "1.6.0"),
       ],
       targets: [
           .target(
