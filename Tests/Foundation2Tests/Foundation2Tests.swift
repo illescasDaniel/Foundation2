@@ -55,6 +55,9 @@ final class Foundation2Tests: XCTestCase {
 		print(543.G, 462834.in(.kilo), 462834.in(.centi), 10.k)
 		print(14_516_457.formatted, 10_000.formatted)
 		print(10.M, 10_000.in(.kilo), 10_000.inMeasurement(unit: .kilo))
+		print("---")
+		
+		print((10.k + 1.G + 100.m).formatted)
 	}
 	
     static var allTests = [
