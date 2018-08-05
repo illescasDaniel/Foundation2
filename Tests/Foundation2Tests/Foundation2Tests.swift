@@ -28,6 +28,28 @@ final class Foundation2Tests: XCTestCase {
 		print(2 ** 4)
 	}
 	
+	func testStrings() {
+		
+		let john: String? = ""
+		let name: String? = "Daniel"
+		
+		if john.isNullOrBlank {
+			print(john ?? "nope")
+		}
+		
+		if john?.isBlank == true {
+			print(john ?? "nope")
+		}
+		
+		if name?.isNotEmpty == true {
+			print(name ?? "nope")
+		}
+		
+		if let validName = name.presence {
+			print(validName)
+		}
+	}
+	
     static var allTests = [
         ("testMeasureFastRandom", testMeasureFastRandom),
     ]

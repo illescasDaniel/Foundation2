@@ -1,6 +1,6 @@
 # Foundation2
 
-[![Swift version](https://img.shields.io/badge/Swift-4-orange.svg)](https://kotlinlang.org/)[![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/illescasDaniel/Foundation2/blob/master/LICENSE)[![Version](https://img.shields.io/badge/version-1.6.0-green.svg)](https://github.com/illescasDaniel/Foundation2/releases)
+[![Swift version](https://img.shields.io/badge/Swift-4-orange.svg)](https://kotlinlang.org/)[![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/illescasDaniel/Foundation2/blob/master/LICENSE)[![Version](https://img.shields.io/badge/version-1.7.0-green.svg)](https://github.com/illescasDaniel/Foundation2/releases)
 
 A great collection of extensions, protocols and classes that improves Swift and extend the Foundation module 😉.
 
@@ -64,10 +64,9 @@ A great collection of extensions, protocols and classes that improves Swift and 
 
 - **Protocols**:
   - **AutoProtocols**: `AutoEquatable`, `AutoCustomDebugStringConvertible`,`AutoCustomStringConvertible`, `AutoComparable`. 
-
   - **Initiable**/CustomInitiable: `protocol Initiable { init() }`. Making a type conform to this protocol allows it to create an instance in generic functions where `<T: Initiable>`.
-
   - **Arithmetic protocols**: that allows you to perform some extra operations with generic types (useful when using `Numeric` types).  `ModulusArithmetic`. 
+  - **EmptyRepresentable**: a type which conforms to this protocol means that is representable as an empty value.
 
 
 - **Extensions**:
@@ -85,6 +84,7 @@ A great collection of extensions, protocols and classes that improves Swift and 
   - **String**: 
     - `subscript(index: Int)`, `var deletingPathExtension: String `, `var localized: String`.
     - `clear()`, `isNumeric`, `levenshteinDistanceScoreTo(string:, ...)`.
+    - `isBlank`, `isNotBlank`, `isNullOrBlank`, `isNullOrEmpty`...
 
   - **UIView**: `mapEverySubview(block:)`.
 
@@ -109,7 +109,6 @@ A great collection of extensions, protocols and classes that improves Swift and 
   - **Mirror**: `deepChildren(of originalValue:)`.
 
   - **Extensions for Swift 4.1 or lower**: `shuffle()`, `shuffled`, `Array.hashValue`, `CaseIterableEnum`, `Collection.randomElement` .
-    
 
 - **Classes**:
 
@@ -139,7 +138,7 @@ A great collection of extensions, protocols and classes that improves Swift and 
   let package = Package(
       name: "Sample",
       dependencies: [
-          .package(url: "https://github.com/illescasDaniel/Foundation2.git", from: "1.6.0"),
+          .package(url: "https://github.com/illescasDaniel/Foundation2.git", from: "1.7.0"),
       ],
       targets: [
           .target(

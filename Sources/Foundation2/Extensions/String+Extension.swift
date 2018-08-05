@@ -28,6 +28,25 @@ import struct Foundation.NSCharacterSet.CharacterSet
 import class Foundation.NSRegularExpression
 import struct Foundation.NSRange
 
+public extension Optional where Wrapped == String {
+	
+	/// This is the oposite of string?.nonBlankPresence
+	public var isNullOrBlank: Bool {
+		if let value = self {
+			return value.isBlank
+		}
+		return true
+	}
+	
+	/// This is the oposite of string?.presence
+	public var isNullOrEmpty: Bool {
+		if let value = self {
+			return value.isEmpty
+		}
+		return true
+	}
+}
+
 public extension String {
 	/// Accesses the element at the specified position.
 	public subscript(index: Int) -> Character {
@@ -78,6 +97,14 @@ public extension String {
 		return String(format: self, arguments: arguments)
 	}
 
+	public var isBlank: Bool {
+		return self.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+	}
+	
+	public var isNotBlank: Bool {
+		return !self.isBlank
+	}
+	
 	/// Returns a value from 0.0 to 1.0 indicating the similarity to other string.
 	public func levenshteinDistanceScoreTo(string: String, ignoreCase: Bool = true, trimWhiteSpacesAndNewLines: Bool = true) -> Float {
 		
