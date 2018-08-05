@@ -50,6 +50,13 @@ final class Foundation2Tests: XCTestCase {
 		}
 	}
 	
+	@available(iOS 10.0, OSX 10.12, *)
+	func testMeasurements() {
+		print(543.G, 462834.in(.kilo), 462834.in(.centi), 10.k)
+		print(14_516_457.formatted, 10_000.formatted)
+		print(10.M, 10_000.in(.kilo), 10_000.inMeasurement(unit: .kilo))
+	}
+	
     static var allTests = [
         ("testMeasureFastRandom", testMeasureFastRandom),
     ]

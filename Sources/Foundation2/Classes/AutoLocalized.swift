@@ -5,7 +5,9 @@
 //  Created by Daniel Illescas Romero on 26/07/2018.
 //
 
-import Foundation
+import class Foundation.NSDictionary
+import struct Foundation.URL
+import struct Foundation.CharacterSet
 
 /// Generates an entire class to easily access the localized strings in your code.
 ///

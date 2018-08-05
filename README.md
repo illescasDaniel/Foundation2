@@ -123,6 +123,7 @@ A great collection of extensions, protocols and classes that improves Swift and 
   * **TrueRandom**: very useful type which handles millions of random numbers. 
   * **SwiftMutex**: `PthreadMutex`, `Semaphore`, `NSLock.sync`. 
   * **AutoLocalized**: automatically generates a class with the keys in your `Localizable.strings`. See the file for more info.
+  * **GenericMeasurement**: easily manage big numbers like 10000 or 10000000 by using extensions like 10.k, 10.M. You can also do the opossite.
 
 ## Installation
 

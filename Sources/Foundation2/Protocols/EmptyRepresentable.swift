@@ -5,8 +5,6 @@
 //  Created by Daniel Illescas Romero on 05/08/2018.
 //
 
-import Foundation
-
 /// Inspired on: https://forums.swift.org/t/presence-value-isempty-nil-value/14869
 public protocol EmptyRepresentable {
 	var isEmpty: Bool { get }
